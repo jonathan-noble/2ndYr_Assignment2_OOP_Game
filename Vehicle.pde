@@ -1,34 +1,32 @@
-class Player {
+class Vehicle {
   PVector loc;
   PVector vel;
-  PVector acc;
-  PVector mouse;
   float speed;
-  
-  Player() {
-    loc = new PVector(width/15, height/1.2);
+
+  Vehicle() {
+    loc = new PVector(random(width/2), random(height/2));
     vel = new PVector(0, 0);
-    mouse = new PVector(100, 100);
-    acc = PVector.sub(mouse, loc);
     speed = 5;
   }
-  
+
   void update() {
+
+    PVector mouse = new PVector(20, 20);
+    PVector acc = PVector.sub(mouse, loc);
     
     //Set magnitute of acceleration
     acc.setMag(0.2);
     //Velocity changes according to acceleration
     vel.add(acc);
     //Limit the velocity by speed
-    vel.limit(speed);
+   // vel.limit(speed);
     //Location changes by velocity
     loc.add(vel);
   }
-  
+
   void display() {
-    stroke(random(20,45));
-    fill(255, 500, 100);
+    stroke(random(300, 45));
+    fill(random(50, 150));
     rect(loc.x, loc.y, 50, 50);
-    
   }
 }
