@@ -1,34 +1,44 @@
+//A possible class that holds inheritance over character selection
 class Player {
+  // float x, y, z;          //Declaration of variables for 3-D shape of Character
   PVector loc;
   PVector vel;
   PVector acc;
-  PVector mouse;
+  PVector control;
   float speed;
-  
+
   Player() {
     loc = new PVector(width/15, height/1.2);
     vel = new PVector(0, 0);
-    mouse = new PVector(100, 100);
-    acc = PVector.sub(mouse, loc);
-    speed = 5;
+    speed = 3.5;
   }
-  
+
   void update() {
-    
+    // Contemplating still on controls whether player is key-controlled OR mouse-controlled
+    //if (keyPressed)    
+    //{
+    //  if (key == CODED)
+    //  {
+    //    if (key == LEFT)
+    //    {
+    control = new PVector(mouseX, mouseY);
+    acc = PVector.sub(control, loc);
     //Set magnitute of acceleration
-    acc.setMag(0.2);
+    acc.setMag(0.5);
     //Velocity changes according to acceleration
     vel.add(acc);
     //Limit the velocity by speed
     vel.limit(speed);
     //Location changes by velocity
     loc.add(vel);
+    //  }
+    //  }
+    //  }
   }
-  
+
   void display() {
-    stroke(random(20,45));
+    stroke(random(20, 45));
     fill(255, 500, 100);
     rect(loc.x, loc.y, 50, 50);
-    
   }
 }

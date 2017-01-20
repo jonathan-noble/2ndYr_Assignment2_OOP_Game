@@ -1,9 +1,10 @@
 Player pl1;
-Vehicle cars[] = new Vehicle[3];
+Vehicle cars[] = new Vehicle[5];
 
 void setup() {
-  size(700, 700);
+  size(850, 700);
   color(HSB);
+  smooth();
 
   //Initialize Player class
   pl1 = new Player();

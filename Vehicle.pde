@@ -1,27 +1,41 @@
+//A possible class that holds inheritance over variance of vehicles
 class Vehicle {
   PVector loc;
   PVector vel;
+  PVector acc;
+  PVector control;
   float speed;
 
   Vehicle() {
-    loc = new PVector(random(width/2), random(height/2));
+    loc = new PVector(0, 0);
     vel = new PVector(0, 0);
-    speed = 5;
+    speed = random(1, 10);
   }
 
   void update() {
 
-    PVector mouse = new PVector(20, 20);
-    PVector acc = PVector.sub(mouse, loc);
-    
-    //Set magnitute of acceleration
-    acc.setMag(0.2);
+    control = new PVector(width, height);
+    acc = PVector.sub(control, loc);
+
+    //Set magnitutd of acceleration
+    acc.setMag(random(0.2, 0.5));
     //Velocity changes according to acceleration
     vel.add(acc);
     //Limit the velocity by speed
-   // vel.limit(speed);
+    vel.limit(speed);
     //Location changes by velocity
     loc.add(vel);
+
+
+    if (loc.x > width) 
+    {
+      loc.x = 0;
+    }
+
+    if (loc.y > height) 
+    {
+      loc.y = 0;
+    }
   }
 
   void display() {
