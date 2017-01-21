@@ -32,7 +32,7 @@ class Vehicle {
       loc.x = 0;
     }
 
-    if (loc.y > height) 
+   else if (loc.y > height) 
     {
       loc.y = 0;
     }
