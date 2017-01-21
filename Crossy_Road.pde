@@ -18,8 +18,6 @@ void setup() {
   for (int i = 0; i < cars.length; i++) {
     cars[i] = new Vehicle();
   }
-
-  //Initialize reset function
 }
 
 void draw() {
@@ -34,12 +32,6 @@ void draw() {
   for (Vehicle car : cars) {
     car.update();
     car.display();
-  }
-}
-
-void reset() {
-
-  for (Vehicle car : cars) {
 
     float plyrX = pl1.loc.x;
     float plyrY = pl1.loc.y; 
@@ -49,12 +41,20 @@ void reset() {
     if (plyrX >= carX && plyrY >= carY)
     {
       game_over = true;
+      println("Game Over!");
+    }
+
+
+    while (game_over == true)
+    {
+      
       return;
     }
   }
-
-  while (game_over == true)
-  {
-    println("Game Over!");
-  }
 }
+
+
+//void reset() {
+
+//  for (Vehicle car : cars) {
+//  }

@@ -8,6 +8,7 @@ class Vehicle {
 
   Vehicle() {
     loc = new PVector(0, 0);
+    // loc = new PVector(-width, -height);  //slower outcome since it's position is further
     vel = new PVector(0, 0);
     speed = random(1, 10);
   }
@@ -30,13 +31,12 @@ class Vehicle {
     if (loc.x > width) 
     {
       loc.x = 0;
-    }
-
-   else if (loc.y > height) 
+    } else if (loc.y > height) 
     {
       loc.y = 0;
     }
   }
+
 
   void display() {
     stroke(random(300, 45));
