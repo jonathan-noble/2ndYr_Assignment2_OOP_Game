@@ -3,7 +3,7 @@
 //since each level has more obstacles and vehicles involved
 //Ideally, there should be five levels (Noobs, Amateur, Intermediate, Professional, Hardcore)
 class Level {
-  ArrayList<Vehicle> cars;
+  ArrayList<Footslogger> peds;
   ArrayList<Obstacle> logs;
   //ArrayList<Reward> prizes;
 

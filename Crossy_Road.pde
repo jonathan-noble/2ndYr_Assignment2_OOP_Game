@@ -1,8 +1,7 @@
-//POSSIBLE OPTION WHERE PLAYER IS THE VEHICLE AND THE OBSTACLES ARE PEOPLE TO AVOID
-// MORE OR LESS LIKE GTA 
+//A game WHERE PLAYER IS THE Footslogger AND THE OBSTACLES ARE PEOPLE TO AVOID
 //ADD TIMER SO EACH SCORE IS RECORDED IN THE LEADERBOARD
 Player pl1;
-Vehicle cars[] = new Vehicle[5];
+Footslogger peds[] = new Footslogger[5];
 Reward gem;
 boolean game_over = false;
 
@@ -17,9 +16,9 @@ void setup() {
   //Initialize Reward class
   gem = new Reward(pl1);
 
-  //Initialize Vehicle - car class
-  for (int i = 0; i < cars.length; i++) {
-    cars[i] = new Vehicle();
+  //Initialize Footslogger - ped class
+  for (int i = 0; i < peds.length; i++) {
+    peds[i] = new Footslogger();
   }
 }
 
@@ -33,21 +32,21 @@ void draw() {
   gem.update();
   gem.display();
 
-  for (Vehicle car : cars) {
-    car.update();
-    car.display();
+  for (Footslogger ped : peds) {
+    ped.update();
+    ped.display();
   }
 }
 
 void resetUpdate() {
 
-  for (Vehicle car : cars) {
-    float carX = car.loc.x;
-    float carY = car.loc.y;
-    float carSize = car.size;
+  for (Footslogger ped : peds) {
+    float pedX = ped.loc.x;
+    float pedY = ped.loc.y;
+    float pedSize = ped.size;
 
-    // It only executes after vehicle has passed by width??
-    if ( vehOver(carX, carY, carSize, carSize) ) {
+    // It only executes after Footslogger has passed by width??
+    if ( vehOver(pedX, pedY, pedSize, pedSize) ) {
       game_over = true;
       println("Game Over!");
     } else {

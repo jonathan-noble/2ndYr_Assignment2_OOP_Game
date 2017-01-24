@@ -1,4 +1,4 @@
-//A possible class that holds inheritance over character selection
+//A possible class that holds inheritance over character selection of vehicles
 class Player {
   // float x, y, z;          //Declaration of variables for 3-D shape of Character
   PVector loc;
@@ -14,12 +14,12 @@ class Player {
   }
 
   void update() {
-    // Contemplating still on controls whether player is key-controlled OR mouse-controlled
+    // if spacebar is pressed, the acceleration of the vehicle is used
     //if (keyPressed)    
     //{
     //  if (key == CODED)
     //  {
-    //    if (key == LEFT)
+    //    if (key == SPACEBAR)
     //    {
     control = new PVector(mouseX, mouseY);
     acc = PVector.sub(control, loc);
