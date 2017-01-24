@@ -1,3 +1,6 @@
+//POSSIBLE OPTION WHERE PLAYER IS THE VEHICLE AND THE OBSTACLES ARE PEOPLE TO AVOID
+// MORE OR LESS LIKE GTA 
+//ADD TIMER SO EACH SCORE IS RECORDED IN THE LEADERBOARD
 Player pl1;
 Vehicle cars[] = new Vehicle[5];
 Reward gem;
@@ -23,6 +26,7 @@ void setup() {
 void draw() {
 
   background(0);
+  resetUpdate();
   pl1.update();
   pl1.display();
 
@@ -32,29 +36,40 @@ void draw() {
   for (Vehicle car : cars) {
     car.update();
     car.display();
+  }
+}
 
-    float plyrX = pl1.loc.x;
-    float plyrY = pl1.loc.y; 
+void resetUpdate() {
+
+  for (Vehicle car : cars) {
     float carX = car.loc.x;
     float carY = car.loc.y;
+    float carSize = car.size;
 
-    if (plyrX >= carX && plyrY >= carY)
-    {
+    // It only executes after vehicle has passed by width??
+    if ( vehOver(carX, carY, carSize, carSize) ) {
       game_over = true;
       println("Game Over!");
+    } else {
+      game_over = false;
     }
-
 
     while (game_over == true)
     {
-      
-      return;
+      pl1.reset();
     }
   }
 }
 
+boolean vehOver(float x, float y, float width, float height) {
 
-//void reset() {
+  float plyrX = pl1.loc.x;
+  float plyrY = pl1.loc.y;
 
-//  for (Vehicle car : cars) {
-//  }
+  if (plyrX >= x && plyrX <= x + width && 
+    plyrY >= y && plyrY <= y + height) {
+    return true;
+  } else {
+    return false;
+  }
+}

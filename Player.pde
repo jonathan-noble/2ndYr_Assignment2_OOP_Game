@@ -41,4 +41,8 @@ class Player {
     fill(255, 500, 100);
     rect(loc.x, loc.y, 50, 50);
   }
+
+  void reset() {
+    loc = new PVector(width/15, height/1.2);
+  }
 }

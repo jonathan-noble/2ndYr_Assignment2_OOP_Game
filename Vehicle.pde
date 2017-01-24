@@ -1,6 +1,7 @@
 //A possible class that holds inheritance over variance of vehicles
 class Vehicle {
   PVector loc;
+  float size;
   PVector vel;
   PVector acc;
   PVector control;
@@ -9,6 +10,7 @@ class Vehicle {
   Vehicle() {
     loc = new PVector(0, 0);
     // loc = new PVector(-width, -height);  //slower outcome since it's position is further
+    size = 35;
     vel = new PVector(0, 0);
     speed = random(1, 10);
   }
@@ -41,6 +43,6 @@ class Vehicle {
   void display() {
     stroke(random(300, 45));
     fill(random(50, 150));
-    rect(loc.x, loc.y, 50, 50);
+    rect(loc.x, loc.y, size, size);
   }
 }
