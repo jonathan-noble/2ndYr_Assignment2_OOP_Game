@@ -55,13 +55,16 @@ void resetUpdate() {
       float pedX = ped.loc.x;
       float pedY = ped.loc.y;
       float pedSize = ped.size;
-      
+
       float treeX = tree.loc.x;
       float treeY = tree.loc.y;
       float treeSize = tree.size;
 
       // It only executes after Footslogger has passed by width??
       if ( overPed(pedX, pedY, pedSize, pedSize) ) {
+        game_over = true;
+        println("Game Over!");
+      } else if (overObst(treeX, treeY, treeSize, treeSize)) {
         game_over = true;
         println("Game Over!");
       } else {

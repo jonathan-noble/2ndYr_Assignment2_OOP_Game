@@ -11,7 +11,7 @@ class Obstacle {
   }
   
   void display() {
-    ellipse(loc.x, loc.y, size, size-50);
+    rect(loc.x, loc.y, size, size-50);
     
   }
   
