@@ -1,3 +1,4 @@
+//A possible class that holds inheritance over variance of obstacles
 class Obstacle {
   PVector loc;
   float size;

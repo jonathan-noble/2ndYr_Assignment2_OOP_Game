@@ -12,6 +12,11 @@ class Player {
     vel = new PVector(0, 0);
     speed = 3.5;
   }
+  
+    void levelUpdate() {
+     loc = new PVector(width/15, height/1.2);
+   // loc.sub(width/15, height/1.2);
+  }
 
   void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used

@@ -8,7 +8,7 @@ boolean game_over = false;
 
 void setup() {
   size(850, 700);
-  color(HSB);
+  colorMode(HSB);
   smooth();
 
   //Initialize Player class
@@ -31,10 +31,11 @@ void draw() {
 
   background(0);
   resetUpdate();
+
   pl1.update();
   pl1.display();
 
-  gem.update();
+  gem.levelUp();
   gem.display();
 
   for (Footslogger ped : peds) {
@@ -104,3 +105,18 @@ boolean overObst(float x, float y, float width, float height) {
     return false;
   }
 }
+
+//void levelUpCheck() {
+//  int lvl = gem.level;
+
+//  if (lvl == 2) { 
+//    for (int i = 0; i < peds.length; i++) {
+//      peds.length * 2;
+//    }
+
+//    Obstacle trees[] = new Obstacle[3];
+
+//    if (lvl == 3) {
+//    }
+//  }
+//}

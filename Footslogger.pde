@@ -8,12 +8,14 @@ class Footslogger {
   float speed;
 
   Footslogger() {
-    loc = new PVector(0, 0);
+    loc = new PVector(random(-width, 0), random(-height, 0));
     // loc = new PVector(-width, -height);  //slower outcome since it's position is further
     size = 35;
     vel = new PVector(0, 0);
     speed = random(1, 10);
   }
+
+
 
   void update() {
 
