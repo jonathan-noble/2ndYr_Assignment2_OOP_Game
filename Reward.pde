@@ -5,7 +5,7 @@ class Reward {
   Player pl1;
 
   Reward(Player pl1) {
-    pos = new PVector (width -50, 25);
+    pos = new PVector (width - 50, 25);
     size = 50;
     level = 1;
     this.pl1 = pl1;
@@ -19,6 +19,7 @@ class Reward {
     if (plyrX >= pos.x && plyrY >= pos.y)
     {
       println("Good job! You're onto next level!");
+      // implement proper integer "level" incrementation
       level++;
       pl1.levelUpdate();
     }

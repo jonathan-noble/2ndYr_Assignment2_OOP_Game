@@ -8,6 +8,7 @@ class Obstacle {
   float size;
   
   Obstacle() {
+ //CREATE A FUNCTION TO CHECK AND ENSURE THAT OBSTACLE WOULD NOT SPAWN NEAR THE PLAYER
     loc = new PVector((random(width)), (random(height)));
     size = 80;
   }

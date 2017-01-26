@@ -26,10 +26,12 @@ class Player {
 
   void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used
+    // Check that key is only working on space bar OTHERWISE NULL POINTER EXCEPTION
     if (keyPressed)    
     {
       if (key == ' ')
-        control = new PVector(mouseX, mouseY);
+
+      control = new PVector(mouseX, mouseY); 
       acc = PVector.sub(control, loc);
       //Set magnitude of acceleration
       acc.setMag(0.5);
@@ -39,19 +41,18 @@ class Player {
       vel.limit(speed);
       //Location changes by velocity
       loc.add(vel);
-      
+
       gear++;
     }
-    
+
     //try "if keyReleased" to implement proper gear incrementation
-    
+
     //An interface to show current gear
     if (gear == 2) {
       speed = 3.5;
       acc.setMag(1);
       println("%d", gear);
-    }   
-    else if (gear == 3) {
+    } else if (gear == 3) {
       speed = 5;
       acc.setMag(1.5);
       println("%d", gear);
@@ -60,6 +61,8 @@ class Player {
       acc.setMag(2);
       println("%d", gear);
     }
+    
+    //GEAR SHOULD RESTART TO 1 ONCE A LEVEL IS FINISHED
     //else {
     //gear = 1;
     //}
