@@ -1,4 +1,4 @@
-//A possible class that holds inheritance over variance of pedestrians, animals and even zombies
+//A possible class that holds inheritance over variance of pedestrians, animals(chicken) and even zombies
 class Footslogger {
   PVector loc;
   float size;

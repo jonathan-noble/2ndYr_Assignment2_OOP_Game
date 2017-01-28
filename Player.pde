@@ -43,8 +43,8 @@ class Player {
 
   void display() {
     fill(255, 500, 100);
-   // rect(loc.x, loc.y, 50, 50);
-    
+    // rect(loc.x, loc.y, 50, 50);
+
     pushMatrix(); // Stores the current transform
     translate(loc.x, loc.y);
     stroke(random(20, 45));
@@ -60,22 +60,23 @@ class Player {
   void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used
     // Check that key is only working on space bar OTHERWISE NULL POINTER EXCEPTION
-    if (keyPressed)    
+
     {
-      if (key == ' ')
-
+      if (checkKey(' '))
+      {
         control = new PVector(mouseX, mouseY); 
-      acc = PVector.sub(control, loc);
-      //Set magnitude of acceleration
-      acc.setMag(0.5);
-      //Velocity changes according to acceleration
-      vel.add(acc);
-      //Limit the velocity by speed
-      vel.limit(speed);
-      //Location changes by velocity
-      loc.add(vel);
+        acc = PVector.sub(control, loc);
+        //Set magnitude of acceleration
+        acc.setMag(0.5);
+        //Velocity changes according to acceleration
+        vel.add(acc);
+        //Limit the velocity by speed
+        vel.limit(speed);
+        //Location changes by velocity
+        loc.add(vel);
 
-      gear++;
+        gear++;
+      }
     }
 
     //try "if keyReleased" to implement proper gear incrementation

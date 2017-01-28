@@ -143,3 +143,25 @@ void levelUpCheck() {
   //if (lvl == 3) {
   //}
 }
+
+//error-check if keys are pressed correctly by user
+boolean[] keys = new boolean[1000];
+
+void keyPressed()
+{ 
+  keys[keyCode] = true;
+}
+ 
+void keyReleased()
+{
+  keys[keyCode] = false; 
+}
+
+boolean checkKey(int k)
+{
+  if (keys.length >= k) 
+  {
+    return keys[k] || keys[Character.toUpperCase(k)];  
+  }
+  return false;
+}
