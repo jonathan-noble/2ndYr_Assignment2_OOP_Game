@@ -19,7 +19,7 @@ class Player {
     loc = new PVector(width/15, height/1.2);
     vel = new PVector(0, 0);
     speed = 2;
-    gear = 1;
+    gear = 0;
     radius = size / 2;
     size = 50;
     radius = size / 2;
@@ -79,41 +79,37 @@ class Player {
       }
     }
 
-    //try "if keyReleased" to implement proper gear incrementation
-
-    //An interface to show current gear
-    if (gear == 2) {
-      speed = 3.5;
-      acc.setMag(1);
-      println("%d", gear);
-    } else if (gear == 3) {
-      speed = 5;
-      acc.setMag(1.5);
-      println("%d", gear);
-    } else if (gear == 4) {
-      speed = 8;
+    //An interface to show current gear if gear == 40 then it is gear 2
+    if (gear == 100) {
+      speed = 3;
+      acc.setMag(0.75);
+      println("You are now in Gear " + gear/100);
+    } else if (gear == 200) {
+      speed = 7.5;
       acc.setMag(2);
-      println("%d", gear);
+      println("You are now in Gear " + gear/100);
+    } else if (gear == 300) {
+      speed = 4;
+      acc.setMag(1);
+      println("You are now in Gear " + gear/100);
+    } else if (gear == 400) {
+      speed = 10;
+      acc.setMag(2.5);
+      println("You are now in Gear " + gear/100);
+    } else if (gear == 500) {
+      speed = 1.5;
+      acc.setMag(0.2);
+      println("You are now in Gear " + gear/100);
+    } else if (gear == 650) {
+      gear = 0;
+      println("You are now in Gear " + gear/100);
     }
 
-    //GEAR SHOULD RESTART TO 1 ONCE A LEVEL IS FINISHED
-    //else {
-    //gear = 1;
-    //}
   }
 
+  //Everything stops and "GAME OVER" text pops out + Back to Menu instead?
   void reset() { 
     loc = new PVector(width/15, height/1.2);
   }
 
-
-  //void keyPressed() {
-  //  if (keyPressed)    
-  //  {
-  //    if (key == ' ')
-  //    {
-  //      gear++;
-  //    }
-  //  }
-  //}
 }
