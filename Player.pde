@@ -2,7 +2,7 @@
 
 //key space is pressed to accelerate 
 //BUT every time space is pressed, gear is changed sequentially to make the player
-//accelerate faster, G1-G4 then back to G1
+//accelerate in random speed and magnitude, G1-G5 then back to G1
 class Player {
   // float x, y, z;          //Declaration of variables for 3-D shape of Character
   PShape shape;

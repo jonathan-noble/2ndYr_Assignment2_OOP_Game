@@ -18,9 +18,9 @@ class Reward {
 
     if (plyrX >= pos.x && plyrY >= pos.y)
     {
-      println("Good job! You're onto next level!");
       // implement proper integer "level" incrementation
       level++;
+       println("Good job! You're onto the level " + level);
       pl1.levelUpdate();
     }
   }

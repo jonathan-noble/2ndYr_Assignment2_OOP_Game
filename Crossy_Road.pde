@@ -3,9 +3,9 @@
 Player pl1;
 Reward gem;
 //int size = 5;
-//Footslogger peds[] = new Footslogger[size];
+//Footslogger FS[] = new Footslogger[size];
 //Obstacle obst[] = new Obstacle[3];
-ArrayList<Footslogger> peds;
+ArrayList<Footslogger> FS;
 ArrayList<Obstacle> obst;
 boolean game_over = false;
 
@@ -21,12 +21,11 @@ void setup() {
   gem = new Reward(pl1);
 
   //Initialize Footslogger - pedestrian object
-  peds = new ArrayList<Footslogger>();
-  for (int i = 0; i < 5; i++) {
-    peds.add(new Footslogger());
-  }
-  //for (int i = 0; i < peds.length; i++) {
-  //  peds[i] = new Footslogger();
+  FS = new ArrayList<Footslogger>();
+
+
+  //for (int i = 0; i < FS.length; i++) {
+  //  FS[i] = new Footslogger();
   //}
 
   //Initialize Obstacle - tree object
@@ -36,7 +35,7 @@ void setup() {
   }
   //for (int i = 0; i < obst.length; i++) {
   //  obst[i] = new Obstacle();
-//}
+  //}
 }
 
 void draw() {
@@ -50,16 +49,24 @@ void draw() {
   gem.levelUp();
   gem.display();
 
-  for (Footslogger ped : peds) {
-    ped.update();
-    ped.display();
+
+  Footslogger ped = new Footslogger();
+  FS.add(ped);
+
+  for (int i = 0; i < FS.size(); i++) {
+    Footslogger footS = (Footslogger) FS.get(i);
+    footS.run();
   }
 
-// JUST TO REMOVE ELEMENTS FROM THE ARRAY - FREES UP MEMORY
-   //for(int i = 0; i < peds.size(); i++) {
-   //peds.get(i);
-  //if (peds.size() > 15) { 
-  //  peds.remove(0);
+  //for (Footslogger ped : FS) {
+  //  ped.run();
+  //}
+
+  // JUST TO REMOVE ELEMENTS FROM THE ARRAY - FREES UP MEMORY
+  //for(int i = 0; i < FS.size(); i++) {
+  //FS.get(i);
+  //if (FS.size() > 15) { 
+  //  FS.remove(0);
   //}
   // }
 
@@ -69,20 +76,21 @@ void draw() {
   }
 }
 
+
 void resetUpdate() {
 
-  for (Footslogger ped : peds) {
+  for (Footslogger ped : FS) {
     for (Obstacle obs : obst) {
       float pedX = ped.loc.x;
       float pedY = ped.loc.y;
-      float pedSize = ped.size;
+      float FSSize = ped.size;
 
       float obsX = obs.loc.x;
       float obsY = obs.loc.y;
       float obstize = obs.size;
 
       // It only executes after Footslogger has passed by width??
-      if ( overPed(pedX, pedY, pedSize, pedSize) ) {
+      if ( overPed(pedX, pedY, FSSize, FSSize) ) {
         game_over = true;
         println("Game Over!");
       } else if (overObst(obsX, obsY, obstize, obstize)) {
@@ -131,14 +139,18 @@ boolean overObst(float x, float y, float width, float height) {
 void levelUpCheck() {
   int lvl = gem.level;
 
+  if (lvl == 2) { 
+    //ArrayList <Footslogger> footie = new ArrayList<Footslogger>(FS.size()*2);
+    //for(int i = 0; i<FS.size(); i++) {
+    //  footie[i] = FS[i];
+    //}
 
 
-  if (lvl <= 5) { 
-    for (Footslogger ped : peds) {
-      ped.size += 4;
-    }
+    //for (Footslogger ped : FS) {
+    //  ped.size += 10;
+    //}
   }
-  //Obstacle obst[] = new Obstacle[3];
+  //  //Obstacle obst[] = new Obstacle[3];
 
   //if (lvl == 3) {
   //}
@@ -151,17 +163,17 @@ void keyPressed()
 { 
   keys[keyCode] = true;
 }
- 
+
 void keyReleased()
 {
-  keys[keyCode] = false; 
+  keys[keyCode] = false;
 }
 
 boolean checkKey(int k)
 {
   if (keys.length >= k) 
   {
-    return keys[k] || keys[Character.toUpperCase(k)];  
+    return keys[k] || keys[Character.toUpperCase(k)];
   }
   return false;
 }

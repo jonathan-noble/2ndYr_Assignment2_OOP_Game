@@ -15,6 +15,10 @@ class Footslogger {
     speed = random(1, 10);
   }
 
+  void run() {
+    update();
+    display();
+  }
 
 
   void update() {

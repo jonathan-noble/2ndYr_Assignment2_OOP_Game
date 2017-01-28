@@ -4,7 +4,7 @@
 //Ideally, there should be five levels (Noobs, Amateur, Intermediate, Professional, Hardcore)
 
 class Level {
-  ArrayList<Footslogger> peds;
+  ArrayList<Footslogger> FS;
   ArrayList<Obstacle> trees;
   ArrayList<Reward> gem;
 
