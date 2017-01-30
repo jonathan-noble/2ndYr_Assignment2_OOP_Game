@@ -43,6 +43,11 @@ class Player {
     shape.vertex(0, 0);
     shape.endShape(CLOSE);
   }
+  
+  void run() {
+    display();
+    update();
+  }
 
   void display() {
     pushMatrix(); // Stores the current transform

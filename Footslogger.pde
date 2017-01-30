@@ -1,5 +1,6 @@
 //A possible class that holds inheritance over variance of pedestrians, animals(chicken) and even zombies
 class Footslogger {
+  PShape shape;
   PVector loc;
   float size;
   PVector vel;
@@ -8,16 +9,31 @@ class Footslogger {
   float speed;
 
   Footslogger() {
-  //CREATE A FUNCTION TO CHECK AND ENSURE THAT FtSlogger WOULD NOT SPAWN NEAR THE PLAYER
+    //CREATE A FUNCTION TO CHECK AND ENSURE THAT FtSlogger WOULD NOT SPAWN NEAR THE PLAYER
     loc = new PVector(random(-width, 0), random(-height, 0));
     size = 35;
     vel = new PVector(0, 0);
     speed = random(1, 10);
+    create();
   }
 
   void run() {
     update();
     display();
+  }
+
+  
+  void create() {
+    shape = createShape(); 
+    shape.beginShape();
+    shape.stroke(5);
+    shape.fill(255);
+    shape.strokeWeight(2);
+    shape.vertex(0, 25);
+    shape.vertex(35, 43);
+    shape.vertex(-10, - 25);  
+    shape.vertex(0, 0);
+    shape.endShape(CLOSE);
   }
 
 
@@ -47,8 +63,15 @@ class Footslogger {
 
 
   void display() {
-    stroke(random(300, 45));
-    fill(random(50, 150));
-    rect(loc.x, loc.y, size, size);
+    //stroke(random(300, 45));
+    //fill(random(50, 150));
+    //rect(loc.x, loc.y, size, size);
+
+    pushMatrix(); // Stores the current transform
+    translate(loc.x, loc.y);
+    stroke(random(20, 45));
+    // Initialize the PShape();
+    shape(shape, 0, 0);
+    popMatrix();
   }
 }

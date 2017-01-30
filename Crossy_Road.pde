@@ -1,56 +1,75 @@
-//A game WHERE PLAYER IS THE Footslogger AND THE OBSTACLES ARE PEOPLE TO AVOID
-//ADD TIMER SO EACH SCORE IS RECORDED IN THE LEADERBOARD
+//  Author Name:  Jonathan Noble
+//  Program Name: OOP 2nd Assignment - Game: Crossy_Road 2.0
+//  Due Date:     08/02/2017
+//  Description:  A game WHERE PLAYER avoids the OBSTACLES and the Footsloggers 
+//                BUT the gearbox is incontrollably broken, thus giving away random change of gears 
+//  Features:     1) A menu with: 
+//                    a) Leaderboard
+//                    b) Character and Lvl selection
+//                2) A game interface with: 
+//                    a) A TIMER SO EACH SCORE IS RECORDED IN THE LEADERBOARD
+//                    b) Gas and gear is shown
+
+
 Player pl1;
-Reward gem;
-//int size = 5;
-//Footslogger FS[] = new Footslogger[size];
-//Obstacle obst[] = new Obstacle[3];
-ArrayList<Footslogger> FS;
-ArrayList<Obstacle> obst;
+Finisher gem;
+ArrayList<Road> road = new ArrayList<Road>();
+ArrayList<Footslogger> FS = new ArrayList<Footslogger>();
+ArrayList<Obstacle> obst = new ArrayList<Obstacle>();
+ArrayList<Reward> scoreUp = new ArrayList<Reward>();
 boolean game_over = false;
 
 void setup() {
-  size(850, 700);
+  //commit 7
+  size(1100, 700);
   colorMode(HSB);
   smooth();
 
   //Initialize Player class
   pl1 = new Player();
 
-  //Initialize Reward class
-  gem = new Reward(pl1);
+  //Initialize Finisher class
+  gem = new Finisher(pl1);
+
+  //Initialize road class
+  for (int i = 0; i < 100; i++) {
+    road.add(new Road());
+  }
 
   //Initialize Footslogger - pedestrian object
-  FS = new ArrayList<Footslogger>();
-  
   //HERE
-  //Footslogger ped = new Footslogger();
-  //FS.add(ped);
+  Footslogger ped = new Footslogger();
+  FS.add(ped);
 
   //for (int i = 0; i < FS.length; i++) {
   //  FS[i] = new Footslogger();
   //}
 
   //Initialize Obstacle - tree object
-  obst = new ArrayList<Obstacle>();
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 2; i++) {
     obst.add(new Obstacle());
   }
   //for (int i = 0; i < obst.length; i++) {
   //  obst[i] = new Obstacle();
   //}
+
+  //Initialize reward - scoreUP
+  for (int i = 0; i < 3; i++) {
+    scoreUp.add(new Reward());
+  }
 }
 
 void draw() {
-
-  background(0);
+  background(#FF05EF);
   resetUpdate();
-
-  pl1.update();
-  pl1.display();
 
   gem.levelUp();
   gem.display();
+
+
+  for (Road roads : road) {
+    roads.run();
+  }
 
   //OR HERE
   //Footslogger ped = new Footslogger();
@@ -77,6 +96,12 @@ void draw() {
     obs.update();
     obs.display();
   }
+
+  for (Reward sU : scoreUp) {
+    sU.display();
+  }
+
+  pl1.run();
 }
 
 
@@ -105,7 +130,7 @@ void resetUpdate() {
 
       while (game_over == true)
       {
-        pl1.reset();
+        noLoop();
       }
     }
   }
