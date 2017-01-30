@@ -6,6 +6,7 @@
 class Player {
   // float x, y, z;          //Declaration of variables for 3-D shape of Character
   PShape shape;
+  PImage speeder;
   PVector loc;
   PVector vel;
   PVector acc;
@@ -17,14 +18,14 @@ class Player {
   float size;
 
   Player() {
-    loc = new PVector(width/15, height/1.2);
+    loc = new PVector(width/30, height/1.05);
     vel = new PVector(0, 0);
     speed = 2;
     gas = 0;
     gear = 1;
-    radius = size / 2;
-    size = 50;
-    radius = size / 2;
+    size = 60;
+    radius = size / 6;
+    speeder = loadImage("speeder.png");
 
     create();
   }
@@ -34,28 +35,27 @@ class Player {
     shape = createShape();
     shape.beginShape();
     shape.stroke(255);
-    shape.noFill();
+    shape.fill(#05FA06);
     shape.strokeWeight(2);
-    shape.vertex(-radius, radius);
-    shape.vertex(0, - radius);
-    shape.vertex(radius, radius);
+    shape.vertex(radius, - radius);
+    shape.vertex(0,  radius);
+    shape.vertex(- radius, - radius);
     shape.vertex(0, 0);
     shape.endShape(CLOSE);
   }
 
   void display() {
-    fill(255, 500, 100);
-    // rect(loc.x, loc.y, 50, 50);
-
     pushMatrix(); // Stores the current transform
-    translate(loc.x, loc.y);
+    translate(loc.x + 25, loc.y - 25 );
     stroke(random(20, 45));
     // Initialize the PShape();
     shape(shape, 0, 0);
     popMatrix();
+
+    image(speeder, loc.x, loc.y, size + 20, size);
   }
   void levelUpdate() {
-    loc = new PVector(width/15, height/1.2);
+    loc = new PVector(width/30, height/1.05);
     // loc.sub(width/15, height/1.2);
   }
 
@@ -126,7 +126,7 @@ class Player {
 
 
   //Everything stops and "GAME OVER" text pops out + Back to Menu instead?
-  void reset() { 
-    loc = new PVector(width/15, height/1.2);
-  }
+  //void reset() { 
+  //  loc = new PVector(width/30, height/1.05);
+  //}
 }

@@ -8,7 +8,7 @@ class Reward {
   }
 
   void display() {
-    fill(#0AE9FF);
+    fill(255);
     ellipse(loc.x, loc.y, size, size);
   }
 }
