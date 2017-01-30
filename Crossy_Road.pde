@@ -22,7 +22,10 @@ void setup() {
 
   //Initialize Footslogger - pedestrian object
   FS = new ArrayList<Footslogger>();
-
+  
+  //HERE
+  //Footslogger ped = new Footslogger();
+  //FS.add(ped);
 
   //for (int i = 0; i < FS.length; i++) {
   //  FS[i] = new Footslogger();
@@ -49,9 +52,9 @@ void draw() {
   gem.levelUp();
   gem.display();
 
-
-  Footslogger ped = new Footslogger();
-  FS.add(ped);
+  //OR HERE
+  //Footslogger ped = new Footslogger();
+  //FS.add(ped);
 
   for (int i = 0; i < FS.size(); i++) {
     Footslogger footS = (Footslogger) FS.get(i);
@@ -90,7 +93,7 @@ void resetUpdate() {
       float obstize = obs.size;
 
       // It only executes after Footslogger has passed by width??
-      if ( overPed(pedX, pedY, FSSize, FSSize) ) {
+      if ( overFS(pedX, pedY, FSSize, FSSize) ) {
         game_over = true;
         println("Game Over!");
       } else if (overObst(obsX, obsY, obstize, obstize)) {
@@ -110,7 +113,7 @@ void resetUpdate() {
 
 //THIS BOOLEAN FUNCTION ONLY DETECTS THE X AND Y COORDINATE OF THE OBJECT
 //NOT ITS LINES IN THE EDGES!!! MEANING ONLY BOTTOM OF RECT IS DETECTED
-boolean overPed(float x, float y, float width, float height) {
+boolean overFS(float x, float y, float width, float height) {
 
   float plyrX = pl1.loc.x;
   float plyrY = pl1.loc.y;
