@@ -10,7 +10,7 @@ class Obstacle {
   Obstacle() {
     //CREATE A FUNCTION TO CHECK AND ENSURE THAT OBSTACLE WOULD NOT SPAWN NEAR THE PLAYER
     loc = new PVector((random(width)), (random(height)));
-    size = 80;
+    size = 55;
 
   }
 
@@ -21,7 +21,7 @@ class Obstacle {
     beginShape();
     stroke(5);
     fill(#61BF1F);
-    strokeWeight(1.5);
+    strokeWeight(1);
 
     for (float i = 0; i < TWO_PI; i += theta) {
       float sx = x + cos(i) * radius2;
@@ -44,7 +44,7 @@ class Obstacle {
     translate(loc.x, loc.y);
     stroke(random(20, 45));
     // Initialize the PShape();
-    create(0, 0, size, size - 50, 6);
+    create(0, 0, size, size - 45, 6);
     popMatrix();
   }
 }
