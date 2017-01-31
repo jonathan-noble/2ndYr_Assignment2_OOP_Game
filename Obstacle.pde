@@ -4,7 +4,6 @@
 //the top right to bottom left where OBSTACLES ONLY POP OUT after top down camera panning
 //(driver player = new location) is finished
 class Obstacle {
-  PShape shape;
   PVector loc;
   float size;
 
@@ -13,25 +12,26 @@ class Obstacle {
     loc = new PVector((random(width)), (random(height)));
     size = 80;
 
-    create();
   }
 
-  void create() {
+  void create(float x, float y, float radius1, float radius2, int npoints) {
     //shape of tree - could be extended to a class (inheritance)
-    shape = createShape(); 
-    shape.beginShape();
-    shape.stroke(5);
-    shape.fill(255);
-    shape.strokeWeight(2);
-    shape.vertex(-35, 43);
-    shape.vertex(35, 43);
-    shape.vertex(-10 , - 25);  
-    shape.vertex(0,0);
-    //shape.vertex(15, - 23);
-    //shape.vertex(30, -30);
-    //shape.vertex(50, 50);
-    //shape.vertex(-50, 50);
-    shape.endShape(CLOSE);
+    float theta = TWO_PI / npoints;
+    float halfTheta = theta/2.0;
+    beginShape();
+    stroke(5);
+    fill(#61BF1F);
+    strokeWeight(1.5);
+
+    for (float i = 0; i < TWO_PI; i += theta) {
+      float sx = x + cos(i) * radius2;
+      float sy = y + sin(i) * radius2;
+      vertex(sx, sy);
+      sx = x + cos(i+halfTheta) * radius1;
+      sy = y + sin(i+halfTheta) * radius1;
+      vertex(sx, sy);
+    }
+    endShape(CLOSE);
   }
 
   void update() {
@@ -44,7 +44,7 @@ class Obstacle {
     translate(loc.x, loc.y);
     stroke(random(20, 45));
     // Initialize the PShape();
-    shape(shape, 0, 0);
+    create(0, 0, size, size - 50, 6);
     popMatrix();
   }
 }
