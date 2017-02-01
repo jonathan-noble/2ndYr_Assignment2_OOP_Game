@@ -168,15 +168,17 @@ void levelUpCheck() {
   int lvl = gem.level;
 
   if (lvl == 2) { 
-    //ArrayList <Footslogger> footie = new ArrayList<Footslogger>(FS.size()*2);
-    //for(int i = 0; i<FS.size(); i++) {
-    //  footie[i] = FS[i];
-    //}
 
+    for (Footslogger ped : FS) {
+      ped.size += 10;
+    }
 
-    //for (Footslogger ped : FS) {
-    //  ped.size += 10;
-    //}
+    //OR
+
+        //ArrayList <Footslogger> footie = new ArrayList<Footslogger>(FS.size()*2);
+        //for (int i = 0; i<FS.size(); i++) {
+        //  footie[i] = FS[i];
+        //}
   }
   //  //Obstacle obst[] = new Obstacle[3];
 

@@ -23,9 +23,9 @@ class Player {
     speed = 2;
     gas = 0;
     gear = 1;
-    size = 60;
+    size = 70;
     radius = size / 6;
-    speeder = loadImage("speeder.png");
+    speeder = loadImage("speeder2.png");
 
     create();
   }
@@ -57,7 +57,7 @@ class Player {
     shape(shape, 0, 0);
     popMatrix();
 
-    image(speeder, loc.x, loc.y, size + 20, size);
+    image(speeder, loc.x, loc.y, size, size);
   }
   void levelUpdate() {
     loc = new PVector(width/30, height/1.05);
