@@ -4,10 +4,8 @@
 //BUT every time space(gear) is pressed, gear is changed sequentially to make the player
 //accelerate in random speed and magnitude, G1-G6 then back to G1
 class Player {
-  // float x, y, z;          //Declaration of variables for 3-D shape of Character
-  PShape shape;
   PImage speeder;
-  PVector loc;
+  PVector playerPos;
   PVector vel;
   PVector acc;
   PVector control;
@@ -18,53 +16,31 @@ class Player {
   float size;
 
   Player() {
-    loc = new PVector(width/30, height/1.05);
+   playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
     speed = 2;
     gas = 0;
     gear = 1;
-    size = 70;
-    radius = size / 6;
-    speeder = loadImage("speeder2.png");
-
-    create();
+    size = 60;
+    speeder = loadImage("speeder.png");
   }
 
-  void create()
-  {
-    shape = createShape();
-    shape.beginShape();
-    shape.stroke(255);
-    shape.fill(#05FA06);
-    shape.strokeWeight(2);
-    shape.vertex(radius, - radius);
-    shape.vertex(0,  radius);
-    shape.vertex(- radius, - radius);
-    shape.vertex(0, 0);
-    shape.endShape(CLOSE);
-  }
-  
-  void run() {
+ 
+  public void run() {
     display();
     update();
   }
-
-  void display() {
-    pushMatrix(); // Stores the current transform
-    translate(loc.x + 25, loc.y - 25 );
-    stroke(random(20, 45));
-    // Initialize the PShape();
-    shape(shape, 0, 0);
-    popMatrix();
-
-    image(speeder, loc.x, loc.y, size, size);
+  
+  public void levelUpdate() {
+    playerPos = new PVector(width/30, height/1.05);
   }
-  void levelUpdate() {
-    loc = new PVector(width/30, height/1.05);
-    // loc.sub(width/15, height/1.2);
+  
+    public void display() {
+
+    image(speeder, playerPos.x, playerPos.y, size, size+35);
   }
 
-  void update() {
+  public void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used
     // Check that key is only working on space bar OTHERWISE NULL POINTER EXCEPTION
 
@@ -72,15 +48,15 @@ class Player {
       if (checkKey(' '))
       {
         control = new PVector(mouseX, mouseY); 
-        acc = PVector.sub(control, loc);
+        acc = PVector.sub(control, playerPos);
         //Set magnitude of acceleration
         acc.setMag(0.5);
-        //Velocity changes according to acceleration
+        //VeplayerPosity changes according to acceleration
         vel.add(acc);
-        //Limit the velocity by speed
+        //Limit the veplayerPosity by speed
         vel.limit(speed);
-        //Location changes by velocity
-        loc.add(vel);
+        //Location changes by veplayerPosity
+        playerPos.add(vel);
 
         gas++;
       }
@@ -132,6 +108,6 @@ class Player {
 
   //Everything stops and "GAME OVER" text pops out + Back to Menu instead?
   //void reset() { 
-  //  loc = new PVector(width/30, height/1.05);
+  //  playerPos = new PVector(width/30, height/1.05);
   //}
 }
