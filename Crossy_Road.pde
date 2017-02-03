@@ -10,12 +10,13 @@
 //                    a) A TIMER SO EACH SCORE IS RECORDED IN THE LEADERBOARD
 //                    b) Gas and gear is shown
 
+import java.util.ArrayList;
 
 Player pl1;
 Finisher gem;
 ArrayList<Road> road = new ArrayList<Road>();
-ArrayList<Footslogger> FS = new ArrayList<Footslogger>();
-ArrayList<Obstacle> obst = new ArrayList<Obstacle>();
+ArrayList<Footslogger> FS = new ArrayList<Footslogger>(5);
+Obstacle obstacle;
 ArrayList<Reward> scoreUp = new ArrayList<Reward>();
 boolean game_over = false;
 
@@ -39,19 +40,18 @@ void setup() {
   //Initialize Footslogger - pedestrian object
   //HERE
   Footslogger ped = new Footslogger();
-  FS.add(ped);
+   while (FS.size() < 1) FS.add(ped);
+
+  //for (int i = 0; i < 15; i++) {
+  //  FS.add(ped);
+  //}
 
   //for (int i = 0; i < FS.length; i++) {
   //  FS[i] = new Footslogger();
   //}
 
   //Initialize Obstacle - tree object
-  for (int i = 0; i < 2; i++) {
-    obst.add(new Obstacle());
-  }
-  //for (int i = 0; i < obst.length; i++) {
-  //  obst[i] = new Obstacle();
-  //}
+  obstacle = new Obstacle(pl1);
 
   //Initialize reward - scoreUP
   for (int i = 0; i < 3; i++) {
@@ -61,7 +61,7 @@ void setup() {
 
 void draw() {
   background(#FF05EF);
-  resetUpdate();
+  // resetUpdate();
 
   gem.levelUp();
   gem.display();
@@ -80,21 +80,24 @@ void draw() {
     footS.run();
   }
 
+  levelUpCheck();
+
   //for (Footslogger ped : FS) {
   //  ped.run();
   //}
 
   // JUST TO REMOVE ELEMENTS FROM THE ARRAY - FREES UP MEMORY
-  //for(int i = 0; i < FS.size(); i++) {
-  //FS.get(i);
-  //if (FS.size() > 15) { 
-  //  FS.remove(0);
+  //for (int i = 0; i < FS.size(); i++) {
+  //  FS.get(i);
+  //  if (FS.size() < 100) { 
+  //    FS.remove(0);
+  //  }
   //}
-  // }
 
-  for (Obstacle obs : obst) {
-    obs.update();
-    obs.display();
+   for (int i = 0; i < obstacle.obstacleX.length; i++) {
+    obstacle.display();  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
+                                          //grassY needed for function call to work  
+    obstacle.gameoverUpdate();  
   }
 
   for (Reward sU : scoreUp) {
@@ -102,37 +105,16 @@ void draw() {
   }
 
   pl1.run();
+  
+  gameOver();
 }
 
-
-void resetUpdate() {
-
-  for (Footslogger ped : FS) {
-    for (Obstacle obs : obst) {
-      float pedX = ped.loc.x;
-      float pedY = ped.loc.y;
-      float FSSize = ped.size;
-
-      float obsX = obs.loc.x;
-      float obsY = obs.loc.y;
-      float obstize = obs.size;
-
-      // It only executes after Footslogger has passed by width??
-      if ( overFS(pedX, pedY, FSSize, FSSize) ) {
-        game_over = true;
-        println("Game Over!");
-      } else if (overObst(obsX, obsY, obstize, obstize)) {
-        game_over = true;
-        println("Game Over!");
-      } else {
-        game_over = false;
-      }
-
-      while (game_over == true)
-      {
-        noLoop();
-      }
-    }
+void gameOver() { 
+  if (game_over == true)
+  {
+    println("Game Over!");
+    noLoop();    //looks better with loop on
+    // text( game over)
   }
 }
 
@@ -140,8 +122,8 @@ void resetUpdate() {
 //NOT ITS LINES IN THE EDGES!!! MEANING ONLY BOTTOM OF RECT IS DETECTED
 boolean overFS(float x, float y, float width, float height) {
 
-  float plyrX = pl1.loc.x;
-  float plyrY = pl1.loc.y;
+  float plyrX = pl1.playerPos.x;
+  float plyrY = pl1.playerPos.y;
 
   if (plyrX >= x && plyrX <= x + width && 
     plyrY >= y && plyrY <= y + height) {
@@ -151,36 +133,39 @@ boolean overFS(float x, float y, float width, float height) {
   }
 }
 
-boolean overObst(float x, float y, float width, float height) {
 
-  float plyrX = pl1.loc.x;
-  float plyrY = pl1.loc.y;
-
-  if (plyrX >= x && plyrX <= x + width && 
-    plyrY >= y && plyrY <= y + height) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 void levelUpCheck() {
   int lvl = gem.level;
+  Footslogger ped = new Footslogger();
 
-  if (lvl == 2) { 
 
-    for (Footslogger ped : FS) {
-      ped.size += 10;
+  if (lvl == 1) { 
+    System.out.println(FS.size());
+  } else  if (lvl == 2) {
+
+    //for (Footslogger ped : FS) {
+    for (int i = 0; i < 5; i++) {
+      FS.add(ped);
     }
+   // FS.set(9, ped);
+    System.out.println(FS.size());
+    // }
+    //} else if (lvl == 1) {
+    //} else if (lvl == 2) { 
 
-    //OR
-
-        //ArrayList <Footslogger> footie = new ArrayList<Footslogger>(FS.size()*2);
-        //for (int i = 0; i<FS.size(); i++) {
-        //  footie[i] = FS[i];
-        //}
+    //  for (Footslogger ped : FS) {
+    //    ped.size += 10;
   }
-  //  //Obstacle obst[] = new Obstacle[3];
+
+  //OR
+
+  //ArrayList <Footslogger> footie = new ArrayList<Footslogger>(FS.size()*2);
+  //for (int i = 0; i<FS.size(); i++) {
+  //  footie[i] = FS[i];
+  //}
+  //}
+  //  //Obstacle obstacle[] = new Obstacle[3];
 
   //if (lvl == 3) {
   //}
