@@ -12,6 +12,7 @@
 
 
 int score = 0;
+float landY = width;
 boolean game_over = false;
 boolean start = false;
 
@@ -54,8 +55,26 @@ void setup() {
   }
 }
 
-void draw() {
+void gameBG() {
   background(#FF05EF);
+
+  //for loop indicates a shaded rect is incrementing to the distance of -2000 from landY
+  //y < 500 meaning keep looping until 300
+  //y+= 50 meaning the distance between each rects
+  for (float y = -1500; y < 600; y += 50) {
+    fill(#F00768);
+    rect(0, landY + y, width, 30);
+  }
+
+  fill(50, 50, 50, 150);
+  rect(0, 0, 45, height);
+  rect(width-45, 0, 45, height);
+}  // end gameBG method
+
+
+void draw() {
+
+  gameBG();
   // resetUpdate();
 
   gem.levelUp();

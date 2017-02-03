@@ -5,12 +5,14 @@
 //(driver player = new location) is finished
 
 class Obstacle {
-  float[] obstacleX = {width - 20, width - 80, width - 150, width - 500, 
-    -50, 100, 450, 600
-  };
-  float[] obstacleY = {height - 10, height- 10, height -10, height - 40, 
-    320, 210, 90, 10
-  };
+  float[] obstacleX = {width - 20, width - 100, width - 200, width - 300, 
+                       width - 400, width - 500, width - 600, width - 700, 
+                       width - 780, -50, 100, 450, 600
+                      };
+  float[] obstacleY = { height - 40, height- 40, height -40, height - 40, 
+                       height - 40, height - 40, height - 40, height - 40, 
+                       height - 40, 320, 210, 90, 10
+                       };
 
   float size;
   Player pl1;
