@@ -76,12 +76,18 @@ void draw() {
 
 
   for (int i = 0; i < fs.fsX.length; i++) {      
-
-    fs.fsX[i] += i > 2 ? -2 : 2;    // Question mark as an operator?????? - somehow related to its color and direction
+    // The ternary operator used to decide whether a Footslogger index > 2 is true or false
+    //If true, it will add -2 to speed. However if false, it will add 2 to speed.
+    fs.fsX[i] += i > 2 ? -10 : 7;    
   }
 
   for (int i = 0; i < fs.laneY1.length; i++) {
     fs.lane1(0, landY + fs.laneY1[i]);  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
+    //grassY needed for function call to work
+  }
+  
+  for (int i = 0; i < fs.laneY2.length; i++) {
+    fs.lane2(0, landY + fs.laneY2[i]);  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
     //grassY needed for function call to work
   }
 

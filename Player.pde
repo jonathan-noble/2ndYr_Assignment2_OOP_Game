@@ -3,9 +3,7 @@
 //key space is pressed to accelerate 
 //BUT every time space(gear) is pressed, gear is changed sequentially to make the player
 //accelerate in random speed and magnitude, G1-G6 then back to G1
-
 class Player {
-  // float x, y, z;          //Declaration of variables for 3-D shape of Character
   PImage speeder;
   PVector playerPos;
   PVector vel;
@@ -18,33 +16,31 @@ class Player {
   float size;
 
   Player() {
-    playerPos = new PVector(width/2.2, height/1.3);
+   playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
     speed = 2;
     gas = 0;
     gear = 1;
-    size = 70;
+    size = 60;
     speeder = loadImage("speeder.png");
-
   }
 
-
-  
-  void run() {
+ 
+  public void run() {
     display();
     update();
   }
-
-  void display() {
-    image(speeder, playerPos.x,playerPos.y, size, size+45);
+  
+  public void levelUpdate() {
+    playerPos = new PVector(width/30, height/1.05);
   }
   
-  void levelUpdate() {
-    playerPos = new PVector(width/30, height/1.05);
-    // loc.sub(width/15, height/1.2);
+    public void display() {
+
+    image(speeder, playerPos.x, playerPos.y, size, size+35);
   }
 
-  void update() {
+  public void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used
     // Check that key is only working on space bar OTHERWISE NULL POINTER EXCEPTION
 
@@ -55,11 +51,11 @@ class Player {
         acc = PVector.sub(control, playerPos);
         //Set magnitude of acceleration
         acc.setMag(0.5);
-        //Velocity changes according to acceleration
+        //VeplayerPosity changes according to acceleration
         vel.add(acc);
-        //Limit the velocity by speed
+        //Limit the veplayerPosity by speed
         vel.limit(speed);
-        //Location changes by velocity
+        //Location changes by veplayerPosity
         playerPos.add(vel);
 
         gas++;
@@ -73,32 +69,32 @@ class Player {
 
     //An interface to show current gas and gear if gas == 40 then it is gear 2
     if (gas == 100) {
-      speed = 3;
+      speed = 10;
       acc.setMag(0.75);
-      gear = 3;
+      gear = 1;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 200) {
-      speed = 7.5;
+      speed = 15;
       acc.setMag(2);
-      gear = 5;
-      println("You are now in Gear: " + gear + ", Gas: " + gas);
-    } else if (gas == 300) {
-      speed = 4;
-      acc.setMag(1);
-      gear = 4;
-      println("You are now in Gear: " + gear + ", Gas: " + gas);
-    } else if (gas == 400) {
-      speed = 10;
-      acc.setMag(2.5);
-      gear = 6;
-      println("You are now in Gear: " + gear + ", Gas: " + gas);
-    } else if (gas == 500) {
-      speed = 1.5;
-      acc.setMag(0.2);
       gear = 2;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas == 300) {
+      speed = 20;
+      acc.setMag(2.5);
+      gear = 3;
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas == 400) {
+      speed = 30;
+      acc.setMag(3);
+      gear = 4;
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas == 500) {
+      speed = 40;
+      acc.setMag(4);
+      gear = 5;
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 650) {
-      gas = 1;
+      gas = 50;
       gear = 1;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     }
@@ -109,4 +105,9 @@ class Player {
   }
 
 
+
+  //Everything stops and "GAME OVER" text pops out + Back to Menu instead?
+  //void reset() { 
+  //  playerPos = new PVector(width/30, height/1.05);
+  //}
 }
