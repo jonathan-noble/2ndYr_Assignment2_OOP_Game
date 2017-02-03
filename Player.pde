@@ -50,7 +50,7 @@ class Player {
         control = new PVector(mouseX, mouseY); 
         acc = PVector.sub(control, playerPos);
         //Set magnitude of acceleration
-        acc.setMag(0.5);
+        acc.setMag(0.2);
         //VeplayerPosity changes according to acceleration
         vel.add(acc);
         //Limit the veplayerPosity by speed
@@ -69,27 +69,27 @@ class Player {
 
     //An interface to show current gas and gear if gas == 40 then it is gear 2
     if (gas == 100) {
-      speed = 10;
-      acc.setMag(0.75);
+      speed = 1.5;
+      acc.setMag(0.5);
       gear = 1;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 200) {
-      speed = 15;
+      speed = 3;
       acc.setMag(2);
       gear = 2;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 300) {
-      speed = 20;
+      speed = 4;
       acc.setMag(2.5);
       gear = 3;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 400) {
-      speed = 30;
+      speed = 7.5;
       acc.setMag(3);
       gear = 4;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 500) {
-      speed = 40;
+      speed = 10;
       acc.setMag(4);
       gear = 5;
       println("You are now in Gear: " + gear + ", Gas: " + gas);

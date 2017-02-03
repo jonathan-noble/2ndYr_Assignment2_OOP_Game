@@ -13,7 +13,7 @@
 
 int score = 0;
 float landY = height;    // length of the land field by height
-boolean start = false;
+boolean game_start = false;
 boolean game_over = false;
 
 
@@ -69,7 +69,10 @@ void gameBG() {
 void draw() {
 
   gameBG();
-  // resetUpdate();
+  
+  if (game_start == true) {
+      landY += 1;
+  }
 
   gem.levelUp();
   gem.display();
@@ -78,17 +81,19 @@ void draw() {
   for (int i = 0; i < fs.fsX.length; i++) {      
     // The ternary operator used to decide whether a Footslogger index > 2 is true or false
     //If true, it will add -2 to speed. However if false, it will add 2 to speed.
-    fs.fsX[i] += i > 2 ? -10 : 7;    
+    fs.fsX[i] += i > 2 ? -5 : 3;
   }
 
   for (int i = 0; i < fs.laneY1.length; i++) {
     fs.lane1(0, landY + fs.laneY1[i]);  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
     //grassY needed for function call to work
+    //fs.gameOverUpdate();
   }
-  
+
   for (int i = 0; i < fs.laneY2.length; i++) {
     fs.lane2(0, landY + fs.laneY2[i]);  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
     //grassY needed for function call to work
+    //fs.gameOverUpdate();
   }
 
 
@@ -103,7 +108,6 @@ void draw() {
   }
 
   pl1.run();
-
   gameOver();
 }// end draw method
 
@@ -117,20 +121,6 @@ void gameOver() {
   }
 }
 
-//THIS BOOLEAN FUNCTION ONLY DETECTS THE X AND Y COORDINATE OF THE OBJECT
-//NOT ITS LINES IN THE EDGES!!! MEANING ONLY BOTTOM OF RECT IS DETECTED
-boolean overFS(float x, float y, float width, float height) {
-
-  float plyrX = pl1.playerPos.x;
-  float plyrY = pl1.playerPos.y;
-
-  if (plyrX >= x && plyrX <= x + width && 
-    plyrY >= y && plyrY <= y + height) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 
 //error-check if keys are pressed correctly by user
@@ -144,6 +134,7 @@ void keyPressed()
 void keyReleased()
 {
   keys[keyCode] = false;
+  game_start = true;
 }
 
 boolean checkKey(int k)

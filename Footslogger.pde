@@ -80,6 +80,14 @@ class Footslogger {
     }
   }
 
+  //void gameoverUpdate() {
+  //  for (int i = 0; i < fsX.length; i++) {
+  //    if (overFS(fsX[i], size)) {
+  //      game_over = true;
+  //    }
+  //  }
+  //}
+
 
   void lane1(float x, float y) {
     noStroke();
@@ -115,4 +123,15 @@ class Footslogger {
     footslog(fsX[4], y + 60, "trump", "left");
     footslog(fsX[5], y + 60, "zombie", "left");
   }
+
+  //boolean overFS(float x, float size) {
+
+  //  float disX = x - pl1.playerPos.x;
+
+  //  if (sqrt(sq(disX)) < size/2) {
+  //    return true;
+  //  } else {
+  //    return false;
+  //  }
+ // }
 }
