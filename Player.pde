@@ -3,7 +3,9 @@
 //key space is pressed to accelerate 
 //BUT every time space(gear) is pressed, gear is changed sequentially to make the player
 //accelerate in random speed and magnitude, G1-G6 then back to G1
+
 class Player {
+  // float x, y, z;          //Declaration of variables for 3-D shape of Character
   PImage speeder;
   PVector playerPos;
   PVector vel;
@@ -16,31 +18,33 @@ class Player {
   float size;
 
   Player() {
-   playerPos = new PVector(width/2.2, height/1.3);
+    playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
     speed = 2;
     gas = 0;
     gear = 1;
-    size = 60;
+    size = 70;
     speeder = loadImage("speeder.png");
+
   }
 
- 
-  public void run() {
+
+  
+  void run() {
     display();
     update();
   }
+
+  void display() {
+    image(speeder, playerPos.x,playerPos.y, size, size+45);
+  }
   
-  public void levelUpdate() {
+  void levelUpdate() {
     playerPos = new PVector(width/30, height/1.05);
-  }
-  
-    public void display() {
-
-    image(speeder, playerPos.x, playerPos.y, size, size+35);
+    // loc.sub(width/15, height/1.2);
   }
 
-  public void update() {
+  void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used
     // Check that key is only working on space bar OTHERWISE NULL POINTER EXCEPTION
 
@@ -51,11 +55,11 @@ class Player {
         acc = PVector.sub(control, playerPos);
         //Set magnitude of acceleration
         acc.setMag(0.5);
-        //VeplayerPosity changes according to acceleration
+        //Velocity changes according to acceleration
         vel.add(acc);
-        //Limit the veplayerPosity by speed
+        //Limit the velocity by speed
         vel.limit(speed);
-        //Location changes by veplayerPosity
+        //Location changes by velocity
         playerPos.add(vel);
 
         gas++;
@@ -105,9 +109,4 @@ class Player {
   }
 
 
-
-  //Everything stops and "GAME OVER" text pops out + Back to Menu instead?
-  //void reset() { 
-  //  playerPos = new PVector(width/30, height/1.05);
-  //}
 }

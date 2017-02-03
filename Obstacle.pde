@@ -5,18 +5,18 @@
 //(driver player = new location) is finished
 
 class Obstacle {
-  float[] obstacleX = {width - 20, width - 100, width - 200, width - 300, 
-                       width - 400, width - 500, width - 600, width - 700, 
-                       width - 780, -50, 100, 450, 600
-                      };
-  float[] obstacleY = { height - 40, height- 40, height -40, height - 40, 
-                       height - 40, height - 40, height - 40, height - 40, 
-                       height - 40, 320, 210, 90, 10
-                       };
 
   float size;
-  Player pl1;
 
+  float[] obstacleX = {width - 20, width - 80, width - 150, width - 500, 
+    -50, 100, 450, 600
+  };
+  float[] obstacleY = {height - 10, height- 10, height -10, height - 40, 
+    320, 210, 90, 10
+  };
+
+
+  Player pl1;
 
   Obstacle(Player pl1) {
     //CREATE A FUNCTION TO CHECK AND ENSURE THAT OBSTACLE WOULD NOT SPAWN NEAR THE PLAYER
@@ -52,6 +52,7 @@ class Obstacle {
     endShape(CLOSE);
   }
 
+
   public void display() {
 
     fill(300, 230, 100);
@@ -68,7 +69,14 @@ class Obstacle {
   public void gameoverUpdate() {
     for (int i = 0; i < obstacleX.length; i++) {
 
-    
+      //if (obstacleX[i].intersects(Float.playerX) ) {
+      //  collision = true;
+      //} else 
+      //collision = false;
+
+      //if (collision) {
+      //  game_over = true;
+      //}
 
       if (overObst(obstacleX[i], obstacleY[i], size)) {
         game_over = true;
