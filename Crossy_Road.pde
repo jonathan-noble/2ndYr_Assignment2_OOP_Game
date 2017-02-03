@@ -12,15 +12,15 @@
 
 
 int score = 0;
-float landY = width;
-boolean game_over = false;
+float landY = height;    // length of the land field by height
 boolean start = false;
+boolean game_over = false;
+
 
 Player pl1;
 Finisher gem;
 Obstacle obstacle;
-ArrayList<Road> road = new ArrayList<Road>();
-ArrayList<Footslogger> FS = new ArrayList<Footslogger>(5);
+Footslogger fs;
 ArrayList<Reward> scoreUp = new ArrayList<Reward>();
 
 void setup() {
@@ -35,15 +35,9 @@ void setup() {
   //Initialize Finisher class
   gem = new Finisher(pl1);
 
-  //Initialize road class
-  for (int i = 0; i < 100; i++) {
-    road.add(new Road());
-  }
-
   //Initialize Footslogger - pedestrian object
   //HERE
-  Footslogger ped = new Footslogger();
-  while (FS.size() < 1) FS.add(ped);
+  fs = new Footslogger(pl1);
 
 
   //Initialize Obstacle - tree object
@@ -58,10 +52,10 @@ void setup() {
 void gameBG() {
   background(#FF05EF);
 
-  //for loop indicates a shaded rect is incrementing to the distance of -2000 from landY
-  //y < 500 meaning keep looping until 300
+  //for loop indicates a shaded rect is incrementing to the distance of -100 from landY
+  //y < 600 meaning keep looping until 600
   //y+= 50 meaning the distance between each rects
-  for (float y = -1500; y < 600; y += 50) {
+  for (float y = -100; y < 600; y += 50) {
     fill(#F00768);
     rect(0, landY + y, width, 30);
   }
@@ -81,13 +75,14 @@ void draw() {
   gem.display();
 
 
-  for (Road roads : road) {
-    roads.run();
+  for (int i = 0; i < fs.fsX.length; i++) {      
+
+    fs.fsX[i] += i > 2 ? -2 : 2;    // Question mark as an operator?????? - somehow related to its color and direction
   }
 
-  for (int i = 0; i < FS.size(); i++) {
-    Footslogger footS = (Footslogger) FS.get(i);
-    footS.run();
+  for (int i = 0; i < fs.laneY1.length; i++) {
+    fs.lane1(0, landY + fs.laneY1[i]);  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
+    //grassY needed for function call to work
   }
 
 
