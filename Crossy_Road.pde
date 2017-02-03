@@ -10,19 +10,21 @@
 //                    a) A TIMER SO EACH SCORE IS RECORDED IN THE LEADERBOARD
 //                    b) Gas and gear is shown
 
-import java.util.ArrayList;
+
+int score = 0;
+boolean game_over = false;
+boolean start = false;
 
 Player pl1;
 Finisher gem;
+Obstacle obstacle;
 ArrayList<Road> road = new ArrayList<Road>();
 ArrayList<Footslogger> FS = new ArrayList<Footslogger>(5);
-Obstacle obstacle;
 ArrayList<Reward> scoreUp = new ArrayList<Reward>();
-boolean game_over = false;
 
 void setup() {
-  //commit 7
-  size(1100, 700);
+
+  size(800, 700);
   colorMode(HSB);
   smooth();
 
@@ -40,15 +42,8 @@ void setup() {
   //Initialize Footslogger - pedestrian object
   //HERE
   Footslogger ped = new Footslogger();
-   while (FS.size() < 1) FS.add(ped);
+  while (FS.size() < 1) FS.add(ped);
 
-  //for (int i = 0; i < 15; i++) {
-  //  FS.add(ped);
-  //}
-
-  //for (int i = 0; i < FS.length; i++) {
-  //  FS[i] = new Footslogger();
-  //}
 
   //Initialize Obstacle - tree object
   obstacle = new Obstacle(pl1);
@@ -71,33 +66,16 @@ void draw() {
     roads.run();
   }
 
-  //OR HERE
-  //Footslogger ped = new Footslogger();
-  //FS.add(ped);
-
   for (int i = 0; i < FS.size(); i++) {
     Footslogger footS = (Footslogger) FS.get(i);
     footS.run();
   }
 
-  levelUpCheck();
 
-  //for (Footslogger ped : FS) {
-  //  ped.run();
-  //}
-
-  // JUST TO REMOVE ELEMENTS FROM THE ARRAY - FREES UP MEMORY
-  //for (int i = 0; i < FS.size(); i++) {
-  //  FS.get(i);
-  //  if (FS.size() < 100) { 
-  //    FS.remove(0);
-  //  }
-  //}
-
-   for (int i = 0; i < obstacle.obstacleX.length; i++) {
+  for (int i = 0; i < obstacle.obstacleX.length; i++) {
     obstacle.display();  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
-                                          //grassY needed for function call to work  
-    obstacle.gameoverUpdate();  
+    //grassY needed for function call to work  
+    obstacle.gameoverUpdate();
   }
 
   for (Reward sU : scoreUp) {
@@ -105,9 +83,10 @@ void draw() {
   }
 
   pl1.run();
-  
+
   gameOver();
-}
+}// end draw method
+
 
 void gameOver() { 
   if (game_over == true)
@@ -133,43 +112,6 @@ boolean overFS(float x, float y, float width, float height) {
   }
 }
 
-
-
-void levelUpCheck() {
-  int lvl = gem.level;
-  Footslogger ped = new Footslogger();
-
-
-  if (lvl == 1) { 
-    System.out.println(FS.size());
-  } else  if (lvl == 2) {
-
-    //for (Footslogger ped : FS) {
-    for (int i = 0; i < 5; i++) {
-      FS.add(ped);
-    }
-   // FS.set(9, ped);
-    System.out.println(FS.size());
-    // }
-    //} else if (lvl == 1) {
-    //} else if (lvl == 2) { 
-
-    //  for (Footslogger ped : FS) {
-    //    ped.size += 10;
-  }
-
-  //OR
-
-  //ArrayList <Footslogger> footie = new ArrayList<Footslogger>(FS.size()*2);
-  //for (int i = 0; i<FS.size(); i++) {
-  //  footie[i] = FS[i];
-  //}
-  //}
-  //  //Obstacle obstacle[] = new Obstacle[3];
-
-  //if (lvl == 3) {
-  //}
-}
 
 //error-check if keys are pressed correctly by user
 boolean[] keys = new boolean[1000];
