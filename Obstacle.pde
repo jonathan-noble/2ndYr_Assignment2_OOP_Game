@@ -6,11 +6,11 @@
 
 class Obstacle {
   float[] obstacleX = {550, 700, 600, 500, 400, 300, 200, 100, 
-                       20, -50, 100, 450, 600
-                      };
+    20, -50, 100, 450, 600
+  };
   float[] obstacleY = { 660, 660, 660, 660, 660, 660, 660, 660, 
-                       660, 320, 210, 90, 10
-                       };
+    660, 320, 210, 90, 10
+  };
 
   float size;
   Player pl1;
@@ -22,14 +22,22 @@ class Obstacle {
     this.pl1 = pl1;
   }
 
-  public void create(float x, float y, float radius1, float radius2, int npoints) {
+  public void tree(float x, float y, float radius1, float radius2, int npoints) {
     //shape of tree - could be extended to a class (inheritance)
     float theta = TWO_PI / npoints;
     float halfTheta = theta/2.0;
-    beginShape();
-    stroke(5);
-    strokeWeight(1);
+    color trunk = color(#BC7A33);
+    color leaves = color(#7DC41C);
+    color inter = lerpColor(trunk, leaves, .33);
 
+    fill(#BC7A33);
+    stroke(10);
+    strokeWeight(0.8);
+    ellipse(x, y, radius1 - 15, radius1 - 15);
+
+    beginShape();
+    stroke(50);
+    strokeWeight(1.2);
     for (float i = 0; i < TWO_PI; i += theta) {
       float sx = x + cos(i) * radius2;
       float sy = y + sin(i) * radius2;
@@ -38,30 +46,28 @@ class Obstacle {
       sx = x + cos(i+halfTheta) * radius1;
       sy = y + sin(i+halfTheta) * radius1;
       vertex(sx, sy);
+    }
+    endShape(CLOSE);
 
-      //fill(#61BF1F);
-      //float px = x + cos(i) * radius2;
-      //float py = y + sin(i) * radius2;
-      //vertex(px - 10, py - 10);
-      //px = x + cos(i+halfTheta) * radius1;
-      //py = y + sin(i+halfTheta) * radius1;
-      //vertex(px - 10, py - 10);
+    beginShape();
+    stroke(3);
+    strokeWeight(1);
+    //noStroke();
+    for (float i = 0; i < TWO_PI; i += theta) {
+      fill(inter);
+      float px = x + cos(i) * radius1;
+      float py = y + sin(i) * radius1;
+      vertex(px, py);
+      px = x + cos(i+halfTheta + 3) * radius2;  // cool, intricate detail where
+      py = y + sin(i+halfTheta + 3) * radius2;  // it shows a hexagram in the centre of the tree
+      vertex(px, py);
     }
     endShape(CLOSE);
   }
 
-  public void display() {
+  public void display(float x, float y) {
 
-    fill(300, 230, 100);
-    pushMatrix(); // Stores the current transform
-    
-    for (int i = 0; i < obstacleX.length; i++) {
-    stroke(random(20, 45));
-    // Initialize the PShape();
-    translate(obstacleX[i], obstacleY[i]);
-      create(0, 0, size, size - 45, 6);
-    }
-    popMatrix();
+    tree(x, y, size, size - 45, 6);
   }
 
   public void gameoverUpdate() {

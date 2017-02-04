@@ -50,7 +50,7 @@ void setup() {
 }
 
 void gameBG() {
-  
+
   background(#FF5AF4);  //background(#FF05EF);
 
   //for loop indicates a shaded rect is incrementing to the distance of -4000 from landY
@@ -70,8 +70,8 @@ void gameBG() {
 void draw() {
 
   gameBG();
-  
-   if (game_start == true) {
+
+  if (game_start == true) {
     landY += 1.85;                //the scroll spreed of the land towards height
     pl1.playerPos.y += 1.85;      //ensures the hop of the player towards the height
   }
@@ -99,17 +99,16 @@ void draw() {
   }
 
 
+  pl1.run();
   for (int i = 0; i < obstacle.obstacleX.length; i++) {
-    obstacle.display();  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
-    //grassY needed for function call to work  
-    obstacle.gameoverUpdate();
+    obstacle.display(obstacle.obstacleX[i], obstacle.obstacleY[i] + landY);  
+    //landY is added so obstacles don't stay in the screen as game starts 
   }
 
   for (Reward sU : scoreUp) {
     sU.display();
   }
 
-  pl1.run();
   gameOver();
 }// end draw method
 
