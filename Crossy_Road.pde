@@ -21,7 +21,7 @@ Player pl1;
 Finisher gem;
 Obstacle obstacle;
 Footslogger fs;
-ArrayList<Reward> scoreUp = new ArrayList<Reward>();
+Reward scoreUp;
 
 void setup() {
 
@@ -44,9 +44,7 @@ void setup() {
   obstacle = new Obstacle(pl1);
 
   //Initialize reward - scoreUP
-  for (int i = 0; i < 3; i++) {
-    scoreUp.add(new Reward());
-  }
+  scoreUp = new Reward(pl1);
 }
 
 void gameBG() {
@@ -105,13 +103,24 @@ void draw() {
     //landY is added so obstacles don't stay in the screen as game starts 
   }
 
-  for (Reward sU : scoreUp) {
-    sU.display();
+  for (int i = 0; i < scoreUp.rewardX.length; i++) {
+    scoreUp.getScore(scoreUp.rewardX[i], scoreUp.rewardY[i] + landY);  
+    //landY is added so obstacles don't stay in the screen as game starts 
+  }
+  
+   //Boundary check
+  if (pl1.playerPos.x > width - 20 || pl1.playerPos.x < 0) {
+    game_over = true;
   }
 
+  gameWin();
   gameOver();
 }// end draw method
 
+void gameWin() {
+    
+}
+  
 
 void gameOver() { 
   if (game_over == true)
