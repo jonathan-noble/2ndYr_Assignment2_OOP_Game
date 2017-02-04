@@ -50,13 +50,14 @@ void setup() {
 }
 
 void gameBG() {
-  background(#FF05EF);
+  
+  background(#FF5AF4);  //background(#FF05EF);
 
-  //for loop indicates a shaded rect is incrementing to the distance of -100 from landY
+  //for loop indicates a shaded rect is incrementing to the distance of -4000 from landY
   //y < 600 meaning keep looping until 600
-  //y+= 50 meaning the distance between each rects
-  for (float y = -100; y < 600; y += 50) {
-    fill(#F00768);
+  //y+= 100 meaning the distance between each rects
+  for (float y = -4000; y < 600; y += 100) {
+    fill(#FF05EF); //#DE12D0);
     rect(0, landY + y, width, 30);
   }
 
@@ -70,8 +71,9 @@ void draw() {
 
   gameBG();
   
-  if (game_start == true) {
-      landY += 1;
+   if (game_start == true) {
+    landY += 1.85;                //the scroll spreed of the land towards height
+    pl1.playerPos.y += 1.85;      //ensures the hop of the player towards the height
   }
 
   gem.levelUp();
@@ -134,7 +136,6 @@ void keyPressed()
 void keyReleased()
 {
   keys[keyCode] = false;
-  game_start = true;
 }
 
 boolean checkKey(int k)

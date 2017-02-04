@@ -16,7 +16,7 @@ class Player {
   float size;
 
   Player() {
-   playerPos = new PVector(width/2.2, height/1.3);
+    playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
     speed = 2;
     gas = 0;
@@ -25,17 +25,17 @@ class Player {
     speeder = loadImage("speeder.png");
   }
 
- 
+
   public void run() {
     display();
     update();
   }
-  
+
   public void levelUpdate() {
     playerPos = new PVector(width/30, height/1.05);
   }
-  
-    public void display() {
+
+  public void display() {
 
     image(speeder, playerPos.x, playerPos.y, size, size+35);
   }
@@ -44,31 +44,33 @@ class Player {
     // if spacebar is pressed, the acceleration of the vehicle is used
     // Check that key is only working on space bar OTHERWISE NULL POINTER EXCEPTION
 
-    {
-      if (checkKey(' '))
-      {
-        control = new PVector(mouseX, mouseY); 
-        acc = PVector.sub(control, playerPos);
-        //Set magnitude of acceleration
-        acc.setMag(0.2);
-        //VeplayerPosity changes according to acceleration
-        vel.add(acc);
-        //Limit the veplayerPosity by speed
-        vel.limit(speed);
-        //Location changes by veplayerPosity
-        playerPos.add(vel);
 
-        gas++;
-      }
+    if (checkKey(' '))
+    {
+      control = new PVector(mouseX, mouseY); 
+      acc = PVector.sub(control, playerPos);
+      //Set magnitude of acceleration
+      acc.setMag(0.2);
+      //VeplayerPosity changes according to acceleration
+      vel.add(acc);
+      //Limit the veplayerPosity by speed
+      vel.limit(speed);
+      //Location changes by veplayerPosity
+      playerPos.add(vel);
+
+      gas++;
     }
+
 
     //Interface for gas and gear
     float ifaceX = 400;
     float ifaceY = 25;
 
 
-    //An interface to show current gas and gear if gas == 40 then it is gear 2
-    if (gas == 100) {
+    //An interface to show current gas and gear if gas == 200 then it is gear 2
+    if ( gas == 50) {
+      game_start = true;
+    } else if (gas == 100) {
       speed = 1.5;
       acc.setMag(0.5);
       gear = 1;
