@@ -1,5 +1,7 @@
 //A possible class that holds inheritance over variance of pedestrians, officials 
 //and even zombies(potential scoreUp/starWantedDown)
+
+//3 stars wanted level = game over
 class Footslogger {
   //x
   float[] fsX = {-50, -250, -350, 450, 650, 750};    // distance apart between pede
@@ -13,7 +15,6 @@ class Footslogger {
   Player pl1;
 
   Footslogger(Player pl1) {
-    //CREATE A FUNCTION TO CHECK AND ENSURE THAT FtSlogger WOULD NOT SPAWN NEAR THE PLAYER
     size = 30;
     speed = random(1, 10);
     this.pl1 = pl1;
@@ -90,8 +91,9 @@ class Footslogger {
 
 
   void lane1(float x, float y) {
-    noStroke();
     fill(#07F7E9);
+    stroke(#5AABFF);
+    strokeWeight(2);
     rect(x, y, width, 60);
 
     for ( x = 20; x < 800; x += 65) {
@@ -105,15 +107,16 @@ class Footslogger {
   }
 
   void lane2(float x, float y) {
-
+    
     fill(#07F7E9);
+    stroke(#5AABFF);
+    strokeWeight(2);
     rect(x, y, width, 75);
 
     for ( x = 20; x < 800; x += 65) {
       fill(#F0FAF9);
       rect(x, y + 10, 15, 50);
     }
-
 
     //x
     footslog(fsX[0], y + 30, "pedestrian", "right");
@@ -123,15 +126,4 @@ class Footslogger {
     footslog(fsX[4], y + 60, "trump", "left");
     footslog(fsX[5], y + 60, "zombie", "left");
   }
-
-  //boolean overFS(float x, float size) {
-
-  //  float disX = x - pl1.playerPos.x;
-
-  //  if (sqrt(sq(disX)) < size/2) {
-  //    return true;
-  //  } else {
-  //    return false;
-  //  }
- // }
 }

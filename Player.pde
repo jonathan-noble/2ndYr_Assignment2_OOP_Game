@@ -61,12 +61,6 @@ class Player {
       gas++;
     }
 
-
-    //Interface for gas and gear
-    float ifaceX = 400;
-    float ifaceY = 25;
-
-
     //An interface to show current gas and gear if gas == 200 then it is gear 2
     if ( gas == 50) {
       game_start = true;
@@ -100,6 +94,11 @@ class Player {
       gear = 1;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     }
+
+    //Interface for gas and gear
+    float ifaceX = 400;
+    float ifaceY = 25;
+
 
     textAlign(LEFT, CENTER);
     text("Gas: " + gas, ifaceX - 75, ifaceY);

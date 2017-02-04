@@ -1,15 +1,10 @@
 //A possible class that holds inheritance over variance of obstacles e.g. Log of trees, train, river
-
-//after REWARD(GEM) IS PICKED UP, the level proceeds by having the player move from 
-//the top right to bottom left where OBSTACLES ONLY POP OUT after top down camera panning
-//(driver player = new location) is finished
-
 class Obstacle {
-  float[] obstacleX = {550, 700, 600, 500, 400, 300, 200, 100, 
-    20, -50, 100, 450, 600
+  float[] obstacleX = {100, 200, 300, 400, 500, 600, 700, 600, 
+                       200, -50, 100, 450, 600
   };
-  float[] obstacleY = { 660, 660, 660, 660, 660, 660, 660, 660, 
-    660, 320, 210, 90, 10
+  float[] obstacleY = { 570, 570, 570, 570, 570, 570, 570, 200, 
+                        200, 40, -100, -220, -390, -390
   };
 
   float size;
@@ -68,26 +63,9 @@ class Obstacle {
   public void display(float x, float y) {
 
     tree(x, y, size, size - 45, 6);
-  }
-
-  public void gameoverUpdate() {
-    for (int i = 0; i < obstacleX.length; i++) {
-      if (overObst(obstacleX[i], obstacleY[i], size)) {
-        game_over = true;
-      }
-    }
-  }
-
-
-  boolean overObst(float x, float y, float size) {
-
-    float disX = x - pl1.playerPos.x;
-    float disY = y - pl1.playerPos.y;
-
-    if (sqrt(sq(disX) + sq(disY)) < size/2) {
-      return true;
-    } else {
-      return false;
+    if (pl1.playerPos.x + 35  > x && pl1.playerPos.x < x + 20   // + 25 to pl.x & + 45 to x
+      && pl1.playerPos.y + 45 > y && pl1.playerPos.y  < y + 5) { // + 25 to pl.y & + 20 to y
+      game_over = true;
     }
   }
 }
