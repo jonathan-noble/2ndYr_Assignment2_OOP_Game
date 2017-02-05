@@ -52,7 +52,7 @@ class Footslogger {
     //arms
     fill(0);
     rect(x - 2, y - 24, 4, 7.5);
-    rect(x - 2, y + 17, 4, 7.5);
+    rect(x - 2, y + 15, 4, 7.5);
 
     //face determining direction of FS
     if (direction == "right" && type != "gardai") {
@@ -105,7 +105,6 @@ class Footslogger {
         game_over = true;
       }
     }
-    busted();
   }
 
 
@@ -123,6 +122,8 @@ class Footslogger {
     footslog(fsX[0], y + 30, "pedestrian", "right");
     footslog(fsX[1], y + 30, "trump", "right");
     footslog(fsX[2], y + 30, "zombie", "right");
+    
+    busted();
   }
 
   void lane2(float x, float y) {
@@ -144,10 +145,11 @@ class Footslogger {
     footslog(fsX[3], y + 15, "pedestrian", "left");
     footslog(fsX[4], y + 60, "trump", "left");
     footslog(fsX[5], y + 60, "gardai", "left");
+    
+    busted();
   }
 
   void star(float x, float y) {
-    //dim three stars
     float theta = TWO_PI / 5;
     float halfTheta = theta/2.0;
 
@@ -167,8 +169,6 @@ class Footslogger {
   }
 
   void busted() {
-
-
     //if wanted incremented, one star is lit up 
     if (wanted >= 1 && wanted <= 9) {
       star(width - 135, 15);

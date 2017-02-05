@@ -97,7 +97,7 @@ void draw() {
 
   pl1.run();
   for (int i = 0; i < obstacle.obstacleX.length; i++) {
-    obstacle.display(obstacle.obstacleX[i], obstacle.obstacleY[i] + landY);  
+    obstacle.display(obstacle.obstacleX[i], obstacle.obstacleY[i] + landY); 
     //landY is added so obstacles don't stay in the screen as game starts
   }
 

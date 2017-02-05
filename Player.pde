@@ -4,7 +4,7 @@
 //BUT every time space(gear) is pressed, gear is changed sequentially to make the player
 //accelerate in random speed and magnitude, G1-G6 then back to G1
 class Player {
-  PImage speeder;
+  PImage[] cars;
   PVector playerPos;
   PVector vel;
   PVector acc;
@@ -22,7 +22,7 @@ class Player {
     gas = 0;
     gear = 1;
     size = 60;
-    speeder = loadImage("speeder.png");
+    cars = new PImage[3];
   }
 
 
@@ -35,16 +35,58 @@ class Player {
     playerPos = new PVector(width/30, height/1.05);
   }
 
-  public void display() {
+  //public void charSelect() {//PImage character) {
+  //}
 
-    image(speeder, playerPos.x, playerPos.y, size, size+35);
+  public void display() {
+    //if(! space pressed then
+    //choose characters between 1, 2, and 3 
+    for (int i = 0; i < cars.length; i++) {
+      cars[i] = loadImage( i + ".png");
+    }
+
+    //universal x
+    float ux = width - 140;
+    //y of button for char
+    float cy = height - 400;
+    //y of button for bg
+    float by = height - 300;
+
+    //try mouseReleased or p5 controls
+    if (mouseX  > ux && mouseX < ux + 85
+      && mouseY > cy && mouseY < cy + 60) {
+      fill(255);
+
+      for (int i = 0; i < cars.length; i++) {
+        if (!checkKey(' ')) {
+
+          image(cars[i], playerPos.x, playerPos.y, size, size+35);
+        } else {
+          ux = 0;
+          cy = 0;
+          by = 0;
+        }
+      }
+    } else {
+      fill(#EDA41D);
+    }
+    stroke(0);
+    rect(ux, cy, 85, 60);
+
+    if (mousePressed && mouseX  > ux && mouseX < ux + 85
+      && mouseY > by && mouseY < by + 60) {
+      fill(255);
+      //return mousePressed value to change bg pre-coded/hard coded bg; type
+    } else {
+      fill(#EDA41D);
+    }
+    stroke(0);
+    rect(ux, by, 85, 60);
   }
+
 
   public void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used
-    // Check that key is only working on space bar OTHERWISE NULL POINTER EXCEPTION
-
-
     if (checkKey(' '))
     {
       control = new PVector(mouseX, mouseY); 
