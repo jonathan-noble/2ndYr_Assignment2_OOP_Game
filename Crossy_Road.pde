@@ -80,35 +80,34 @@ void draw() {
 
   for (int i = 0; i < fs.fsX.length; i++) {      
     // The ternary operator used to decide whether a Footslogger index > 2 is true or false
-    //If true, it will add -2 to speed. However if false, it will add 2 to speed.
+    //If true, it will add -5 to speed of fs from right. 
+    //However if false, it will add 2 to speed of fs from left.
     fs.fsX[i] += i > 2 ? -5 : 3;
   }
 
   for (int i = 0; i < fs.laneY1.length; i++) {
-    fs.lane1(0, landY + fs.laneY1[i]);  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
-    //grassY needed for function call to work
-    //fs.gameOverUpdate();
+    fs.lane1(0, landY + fs.laneY1[i]); 
+    //landY is added so obstacles don't stay in the screen as game starts
   }
 
   for (int i = 0; i < fs.laneY2.length; i++) {
-    fs.lane2(0, landY + fs.laneY2[i]);  //obstacle.obstacleX[i], obstacle.obstacleY[i] + grassY);  
-    //grassY needed for function call to work
-    //fs.gameOverUpdate();
+    fs.lane2(0, landY + fs.laneY2[i]);  
+    //landY is added so obstacles don't stay in the screen as game starts
   }
 
 
   pl1.run();
   for (int i = 0; i < obstacle.obstacleX.length; i++) {
     obstacle.display(obstacle.obstacleX[i], obstacle.obstacleY[i] + landY);  
-    //landY is added so obstacles don't stay in the screen as game starts 
+    //landY is added so obstacles don't stay in the screen as game starts
   }
 
   for (int i = 0; i < scoreUp.rewardX.length; i++) {
     scoreUp.getScore(scoreUp.rewardX[i], scoreUp.rewardY[i] + landY);  
-    //landY is added so obstacles don't stay in the screen as game starts 
+    //landY is added so obstacles don't stay in the screen as game starts
   }
-  
-   //Boundary check
+
+  //Boundary check
   if (pl1.playerPos.x > width - 20 || pl1.playerPos.x < 0) {
     game_over = true;
   }
@@ -118,9 +117,8 @@ void draw() {
 }// end draw method
 
 void gameWin() {
-    
 }
-  
+
 
 void gameOver() { 
   if (game_over == true)

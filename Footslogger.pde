@@ -74,20 +74,14 @@ class Footslogger {
         fsX[i] = width;
       }
     }
-
-    if (pl1.playerPos.x + 25 > x && pl1.playerPos.x < x + 45 
-      && pl1.playerPos.y + 25 > y && pl1.playerPos.y  < y + 20) {
+ 
+    //  right side of player           right side of footslogger
+    if (pl1.playerPos.x + 50  > x && pl1.playerPos.x < x + 15   
+    //  bottom side of player              bot side of fs
+      && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 15) { 
       game_over = true;
     }
   }
-
-  //void gameoverUpdate() {
-  //  for (int i = 0; i < fsX.length; i++) {
-  //    if (overFS(fsX[i], size)) {
-  //      game_over = true;
-  //    }
-  //  }
-  //}
 
 
   void lane1(float x, float y) {
