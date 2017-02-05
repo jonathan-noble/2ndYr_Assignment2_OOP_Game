@@ -1,10 +1,10 @@
 //A possible class that holds inheritance over variance of obstacles e.g. Log of trees, train, river
 class Obstacle {
   float[] obstacleX = {100, 200, 300, 400, 500, 600, 700, 600, 
-                       200, -50, 100, 450, 600
+    200, -50, 100, 450, 600
   };
   float[] obstacleY = { 570, 570, 570, 570, 570, 570, 570, 200, 
-                        200, 40, -100, -220, -390, -390
+    200, 40, -100, -220, -390, -390
   };
 
   float size;
@@ -47,7 +47,6 @@ class Obstacle {
     beginShape();
     stroke(3);
     strokeWeight(1);
-    //noStroke();
     for (float i = 0; i < TWO_PI; i += theta) {
       fill(inter);
       float px = x + cos(i) * radius1;
@@ -63,8 +62,10 @@ class Obstacle {
   public void display(float x, float y) {
 
     tree(x, y, size, size - 45, 6);
-    if (pl1.playerPos.x + 35  > x && pl1.playerPos.x < x + 20   // + 25 to pl.x & + 45 to x
-      && pl1.playerPos.y + 45 > y && pl1.playerPos.y  < y + 5) { // + 25 to pl.y & + 20 to y
+    //  right side of player           right side of obstacle
+    if (pl1.playerPos.x + 75  > x && pl1.playerPos.x < x + 15  
+      //  bottom side of player              bot side of obst
+      && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 15) { 
       game_over = true;
     }
   }

@@ -10,7 +10,6 @@
 //                    a) A TIMER SO EACH SCORE IS RECORDED IN THE LEADERBOARD
 //                    b) Gas and gear is shown
 
-
 int score = 0;
 float landY = height;    // length of the land field by height
 boolean game_start = false;
