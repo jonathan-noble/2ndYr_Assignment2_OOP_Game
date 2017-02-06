@@ -182,9 +182,9 @@ class Footslogger {
       // background(0);
     } else if ( wanted >= 10 && wanted <= 24) {
       star(width - 110, 25);
-      star(width - 145, 25);
+      star(width - 140, 25);
     } else if ( wanted == 25) {
-      star(width - 145, 25);
+      star(width - 140, 25);
       star(width - 170, 25);
       game_over = true;
     }

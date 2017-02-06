@@ -12,19 +12,21 @@ class Player {
   float speed;
   int gas;
   int gear;
-  float radius;
+  float angle;
   float size;
+  float segSize;
 
   Player() {
+    cars = new PImage[3];
     playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
     speed = 2;
     gas = 0;
     gear = 1;
+    angle = 0;
     size = 60;
-    cars = new PImage[3];
+    segSize = 50;
   }
-
 
   public void run() {
     display();
@@ -41,9 +43,35 @@ class Player {
     for (int i = 0; i < cars.length; i++) {
       cars[i] = loadImage( i + ".png");
     }
-    
+
     image(cars[0], playerPos.x, playerPos.y, size, size + 35);
   }
+  
+  //ATTEMPT3 ON MAKING VEHICLE IMAGE FOLLOW MOUSE POINTER
+   //public void segment(float x, float y, float a) {
+   // pushMatrix();
+   // translate(x, y);
+   // rotate(a);    
+   // image(cars[0], 0, 0, size, size - 35);
+   // popMatrix();
+  //}//
+
+  //public void display() {
+   // //if(! space pressed then
+   // //choose characters between 1, 2, and 3 
+   // for (int i = 0; i < cars.length; i++) {
+   //   cars[i] = loadImage( i + ".png");
+   // }
+
+   // float dx = mouseX - playerPos.x;
+   // float dy = mouseY - playerPos.y;
+
+   // angle = atan2(dy, dx);    
+   // playerPos.x = mouseX - (cos(angle) * segSize );
+   // playerPos.y = mouseY -(sin(angle) * segSize );
+
+   // segment(playerPos.x, playerPos.y, angle);
+  //}////
 
   public void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used

@@ -10,6 +10,14 @@
 //                    a) A TIMER SO EACH SCORE IS RECORDED IN THE LEADERBOARD
 //                    b) Gas and gear is shown
 
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+
 int score = 0;
 float landY = height;    // length of the land field by height
 boolean game_start = false;
@@ -21,12 +29,21 @@ Finisher gem;
 Obstacle obstacle;
 Footslogger fs;
 Reward scoreUp;
+Minim minim;
+AudioPlayer ss_intro, ss_main;
 
 void setup() {
 
   size(800, 700);
   colorMode(HSB);
   smooth();
+
+  //Initialize all the sound file
+  minim = new Minim(this);
+  ss_intro = minim.loadFile("ss_intro.wav");
+  ss_main = minim.loadFile("ss_main.wav");
+
+  ss_intro.loop();
 
   //Initialize Player class
   pl1 = new Player();
@@ -57,11 +74,6 @@ void gameBG() {
     fill(#FF05EF); //#DE12D0);
     rect(0, landY + y, width, 30);
   }
-
-  fill(50, 50, 50, 150);
-  rect(0, height-25, width, 25);
-  rect(0, 0, 45, height);
-  rect(width-45, 0, 45, height);
 }  // end gameBG method
 
 
@@ -70,6 +82,9 @@ void draw() {
   gameBG(); 
 
   if (game_start == true) {
+    ss_intro.close();
+    ss_main.play();
+    cursor(CROSS);
     landY += 2.3;                //the scroll spreed of the land towards height
     pl1.playerPos.y += 2.3;      //ensures the stance of the player towards the height
   }
@@ -108,9 +123,14 @@ void draw() {
 
   //Boundary check
   if (pl1.playerPos.x > width - 30 || pl1.playerPos.x < 0 + 30
-    || pl1.playerPos.y > height - 80 || pl1.playerPos.y < 0) {
+    || pl1.playerPos.y > height - 80 || pl1.playerPos.y < -15) {
     game_over = true;
   }
+
+  fill(50, 50, 50, 150);
+  rect(0, height-25, width, 25);
+  rect(0, 0, 45, height);
+  rect(width-45, 0, 45, height);
 
   gameWin();
   gameOver();

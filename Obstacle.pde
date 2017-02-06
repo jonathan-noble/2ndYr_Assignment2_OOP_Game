@@ -8,12 +8,13 @@ class Obstacle {
   };
 
   float size;
+  boolean grow = true;
   Player pl1;
 
 
   Obstacle(Player pl1) {
     //CREATE A FUNCTION TO CHECK AND ENSURE THAT OBSTACLE WOULD NOT SPAWN NEAR THE PLAYER
-    size = 55;
+    size = 55; // 0
     this.pl1 = pl1;
   }
 
@@ -58,13 +59,32 @@ class Obstacle {
     }
     endShape(CLOSE);
   }
+  
+  //ATTEMPT2
+  public void render() {
+    if (game_start == true) {
+      //  grow = true;
+      if (grow) { 
+        size += 1.5;
+        if (size == .01) {
+          grow = false;
+        }
+      } else {
+        size--;
+        if (size == 0) {
+          grow = true;
+        }
+      }
+    }
+  }
 
   public void display(float x, float y) {
 
+   // render();
     tree(x, y, size, size - 45, 6);
     //  right side of player           right side of obstacle
     if (pl1.playerPos.x + 75  > x && pl1.playerPos.x < x + 15  
-      //  bottom side of player  \            bot side of obst
+      //  bottom side of player              bot side of obst
       && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 15) { 
       game_over = true;
     }
