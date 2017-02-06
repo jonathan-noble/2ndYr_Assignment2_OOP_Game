@@ -79,6 +79,13 @@ class Footslogger {
         fsX[i] = width;
       }
     }
+    
+     //for (int i = 0; i <= 3; i++) {
+     // if (fsX[i] > width ) {
+     //   //The starting point of the FS
+     //   fsX[i] = -90;
+     // }
+   // }//
 
     //  right side of player           right side of footslogger
     if (pl1.playerPos.x + 50  > x && pl1.playerPos.x < x + 15   
@@ -122,7 +129,7 @@ class Footslogger {
     footslog(fsX[0], y + 30, "pedestrian", "right");
     footslog(fsX[1], y + 30, "trump", "right");
     footslog(fsX[2], y + 30, "zombie", "right");
-    
+
     busted();
   }
 
@@ -145,7 +152,7 @@ class Footslogger {
     footslog(fsX[3], y + 15, "pedestrian", "left");
     footslog(fsX[4], y + 60, "trump", "left");
     footslog(fsX[5], y + 60, "gardai", "left");
-    
+
     busted();
   }
 
@@ -157,8 +164,8 @@ class Footslogger {
     beginShape();
     stroke(0);
     for (float i = 0; i < TWO_PI; i += theta) {
-       float sx = x + cos(i) * 14;
-       float sy = y + sin(i) * 14;
+      float sx = x + cos(i) * 14;
+      float sy = y + sin(i) * 14;
       fill(255);
       vertex(sx, sy);
       sx = x + cos(i+halfTheta) * 5;
@@ -171,14 +178,14 @@ class Footslogger {
   void busted() {
     //if wanted incremented, one star is lit up 
     if (wanted >= 1 && wanted <= 9) {
-      star(width - 135, 15);
-     // background(0);
+      star(width - 110, 25);
+      // background(0);
     } else if ( wanted >= 10 && wanted <= 24) {
-      star(width - 110, 15);
-      star(width - 135, 15);
+      star(width - 110, 25);
+      star(width - 145, 25);
     } else if ( wanted == 25) {
-      star(width - 135, 15);
-      star(width - 160, 15);
+      star(width - 145, 25);
+      star(width - 170, 25);
       game_over = true;
     }
     // if wanted three times, game over and police arrives?

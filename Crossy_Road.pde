@@ -15,7 +15,7 @@ float landY = height;    // length of the land field by height
 boolean game_start = false;
 boolean game_over = false;
 
-
+//Declare classes
 Player pl1;
 Finisher gem;
 Obstacle obstacle;
@@ -59,6 +59,7 @@ void gameBG() {
   }
 
   fill(50, 50, 50, 150);
+  rect(0, height-25, width, 25);
   rect(0, 0, 45, height);
   rect(width-45, 0, 45, height);
 }  // end gameBG method
@@ -66,32 +67,28 @@ void gameBG() {
 
 void draw() {
 
-  gameBG();
+  gameBG(); 
 
   if (game_start == true) {
-    landY += 1.85;                //the scroll spreed of the land towards height
-    pl1.playerPos.y += 1.85;      //ensures the hop of the player towards the height
+    landY += 2.3;                //the scroll spreed of the land towards height
+    pl1.playerPos.y += 2.3;      //ensures the stance of the player towards the height
   }
-
-  gem.levelUp();
-  gem.display();
-
 
   for (int i = 0; i < fs.fsX.length; i++) {      
     // The ternary operator used to decide whether a Footslogger index > 2 is true or false
     //If true, it will add -5 to speed of fs from right. 
     //However if false, it will add 2 to speed of fs from left.
-    fs.fsX[i] += i > 2 ? -5 : 3;
+    fs.fsX[i] += i > 2 ? -6 : 4;
   }
 
   for (int i = 0; i < fs.laneY1.length; i++) {
     fs.lane1(0, landY + fs.laneY1[i]); 
-    //landY is added so obstacles don't stay in the screen as game starts
+    //landY is added so fs don't stay in the screen as game starts
   }
 
   for (int i = 0; i < fs.laneY2.length; i++) {
     fs.lane2(0, landY + fs.laneY2[i]);  
-    //landY is added so obstacles don't stay in the screen as game starts
+    //landY is added so fs don't stay in the screen as game starts
   }
 
 
@@ -103,11 +100,15 @@ void draw() {
 
   for (int i = 0; i < scoreUp.rewardX.length; i++) {
     scoreUp.getScore(scoreUp.rewardX[i], scoreUp.rewardY[i] + landY);  
-    //landY is added so obstacles don't stay in the screen as game starts
+    //landY is added so scoreUp don't stay in the screen as game starts
   }
 
+  gem.bonusUp();
+  gem.display(gem.finPosX, gem.finPosY + landY); 
+
   //Boundary check
-  if (pl1.playerPos.x > width - 20 || pl1.playerPos.x < 0) {
+  if (pl1.playerPos.x > width - 30 || pl1.playerPos.x < 0 + 30
+    || pl1.playerPos.y > height - 80 || pl1.playerPos.y < 0) {
     game_over = true;
   }
 
@@ -122,6 +123,8 @@ void gameWin() {
 void gameOver() { 
   if (game_over == true)
   {
+    //text not showing up
+    text("B U S T E D", width/2 - 100, height/2 - 100, 800, 1000);
     println("Game Over!");
     noLoop();    //looks better with loop on
     // text( game over)

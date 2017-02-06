@@ -35,55 +35,15 @@ class Player {
     playerPos = new PVector(width/30, height/1.05);
   }
 
-  //public void charSelect() {//PImage character) {
-  //}
-
   public void display() {
     //if(! space pressed then
     //choose characters between 1, 2, and 3 
     for (int i = 0; i < cars.length; i++) {
       cars[i] = loadImage( i + ".png");
     }
-
-    //universal x
-    float ux = width - 140;
-    //y of button for char
-    float cy = height - 400;
-    //y of button for bg
-    float by = height - 300;
-
-    //try mouseReleased or p5 controls
-    if (mouseX  > ux && mouseX < ux + 85
-      && mouseY > cy && mouseY < cy + 60) {
-      fill(255);
-
-      for (int i = 0; i < cars.length; i++) {
-        if (!checkKey(' ')) {
-
-          image(cars[i], playerPos.x, playerPos.y, size, size+35);
-        } else {
-          ux = 0;
-          cy = 0;
-          by = 0;
-        }
-      }
-    } else {
-      fill(#EDA41D);
-    }
-    stroke(0);
-    rect(ux, cy, 85, 60);
-
-    if (mousePressed && mouseX  > ux && mouseX < ux + 85
-      && mouseY > by && mouseY < by + 60) {
-      fill(255);
-      //return mousePressed value to change bg pre-coded/hard coded bg; type
-    } else {
-      fill(#EDA41D);
-    }
-    stroke(0);
-    rect(ux, by, 85, 60);
+    
+    image(cars[0], playerPos.x, playerPos.y, size, size + 35);
   }
-
 
   public void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used
@@ -146,7 +106,6 @@ class Player {
     text("Gas: " + gas, ifaceX - 75, ifaceY);
     text("Gear " + gear, ifaceX, ifaceY);
   }
-
 
 
   //Everything stops and "GAME OVER" text pops out + Back to Menu instead?

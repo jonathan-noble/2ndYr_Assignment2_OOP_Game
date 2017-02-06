@@ -64,7 +64,7 @@ class Obstacle {
     tree(x, y, size, size - 45, 6);
     //  right side of player           right side of obstacle
     if (pl1.playerPos.x + 75  > x && pl1.playerPos.x < x + 15  
-      //  bottom side of player              bot side of obst
+      //  bottom side of player  \            bot side of obst
       && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 15) { 
       game_over = true;
     }
