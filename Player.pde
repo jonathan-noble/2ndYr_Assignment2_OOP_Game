@@ -4,7 +4,7 @@
 //BUT every time space(gear) is pressed, gear is changed sequentially to make the player
 //accelerate in random speed and magnitude, G1-G6 then back to G1
 class Player {
-  PImage[] cars;
+  PImage cars;  //PImage[] cars;
   PVector playerPos;
   PVector vel;
   PVector acc;
@@ -17,7 +17,8 @@ class Player {
   float segSize;
 
   Player() {
-    cars = new PImage[3];
+    //cars = new PImage[3];
+     cars = loadImage("0.png");
     playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
     speed = 2;
@@ -40,11 +41,11 @@ class Player {
   public void display() {
     //if(! space pressed then
     //choose characters between 1, 2, and 3 
-    for (int i = 0; i < cars.length; i++) {
-      cars[i] = loadImage( i + ".png");
-    }
+    //for (int i = 0; i < cars.length; i++) {
+    //  cars[i] = loadImage( i + ".png");
+    //}
 
-    image(cars[0], playerPos.x, playerPos.y, size, size + 35);
+    image(cars, playerPos.x, playerPos.y, size, size + 35);
   }
   
   //ATTEMPT3 ON MAKING VEHICLE IMAGE FOLLOW MOUSE POINTER

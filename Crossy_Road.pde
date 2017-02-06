@@ -70,7 +70,7 @@ void gameBG() {
   //for loop indicates a shaded rect is incrementing to the distance of -4000 from landY
   //y < 600 meaning keep looping until 600
   //y+= 100 meaning the distance between each rects
-  for (float y = -4000; y < 600; y += 100) {
+  for (float y = -4370; y < 600; y += 100) {
     fill(#FF05EF); //#DE12D0);
     rect(0, landY + y, width, 30);
   }
@@ -89,6 +89,7 @@ void draw() {
     pl1.playerPos.y += 2.3;      //ensures the stance of the player towards the height
   }
 
+
   for (int i = 0; i < fs.fsX.length; i++) {      
     // The ternary operator used to decide whether a Footslogger index > 2 is true or false
     //If true, it will add -5 to speed of fs from right. 
@@ -99,18 +100,19 @@ void draw() {
   for (int i = 0; i < fs.laneY1.length; i++) {
     fs.lane1(0, landY + fs.laneY1[i]); 
     //landY is added so fs don't stay in the screen as game starts
+    fs.busted();
   }
 
   for (int i = 0; i < fs.laneY2.length; i++) {
     fs.lane2(0, landY + fs.laneY2[i]);  
     //landY is added so fs don't stay in the screen as game starts
+    fs.busted();
   }
 
-
-  pl1.run();
-  for (int i = 0; i < obstacle.obstacleX.length; i++) {
-    obstacle.display(obstacle.obstacleX[i], obstacle.obstacleY[i] + landY); 
-    //landY is added so obstacles don't stay in the screen as game starts
+  for (int i = 0; i < fs.laneY3.length; i++) {
+    fs.lane3(0, landY + fs.laneY3[i]);  
+    //landY is added so fs don't stay in the screen as game starts
+    fs.busted();
   }
 
   for (int i = 0; i < scoreUp.rewardX.length; i++) {
@@ -118,12 +120,20 @@ void draw() {
     //landY is added so scoreUp don't stay in the screen as game starts
   }
 
+  pl1.run();
+
+  for (int i = 0; i < obstacle.obstacleX.length; i++) {
+    obstacle.display(obstacle.obstacleX[i], obstacle.obstacleY[i] + landY); 
+    //landY is added so obstacles don't stay in the screen as game starts
+  }
+
   gem.bonusUp();
   gem.display(gem.finPosX, gem.finPosY + landY); 
 
+
   //Boundary check
   if (pl1.playerPos.x > width - 30 || pl1.playerPos.x < 0 + 30
-    || pl1.playerPos.y > height - 80 || pl1.playerPos.y < -15) {
+    || pl1.playerPos.y > height - 80) {
     game_over = true;
   }
 

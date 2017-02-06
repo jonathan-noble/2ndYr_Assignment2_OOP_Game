@@ -1,6 +1,6 @@
 class Finisher {
   float finPosX= width/2.2;
-  float finPosY = -2400;
+  float finPosY = -4600;
   PShape gem;
   float size;
   int level;      

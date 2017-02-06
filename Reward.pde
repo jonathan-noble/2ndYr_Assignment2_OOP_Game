@@ -1,6 +1,6 @@
 class Reward {
-  float[] rewardX = {500, 0, -230, -450, -600, -1000};
-  float[] rewardY = {330, 55, 0, -120, 360, 560};
+  float[] rewardX = {350, 55, 250, 360, 560, 450, 450, 250 };
+  float[] rewardY = {320, 0 , -230, -450, -600 , -1000, -1500, -1750, -1900 };
   PImage vintage;
   float size;
   Player pl1;
@@ -21,11 +21,15 @@ class Reward {
       score++;
     }
     
-    //Interface for gas and gear
+    if (score == 1) {
+      game_start = true;
+    }
+    
+    //Interface for score
     float ifaceX = 400;
     float ifaceY = 25;
      
      textAlign(LEFT, CENTER);
-    text("Score: " + score, ifaceX - 200, ifaceY);
+    text("Quid: €" + score, ifaceX - 200, ifaceY);
   }
 }
