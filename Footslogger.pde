@@ -4,11 +4,11 @@
 //3 stars wanted level = game over
 class Footslogger {
   float[] fsX = {-50, -250, -350, 450, 650, 750};    // distance apart between pede
-                  //1      3    5      6     8     12    15      18      19    22      23
+  //1      3    5      6     8     12    15      18      19    22      23
   float[] laneY1 = {120, -200, -525, -750, -1350, -2200, -2670, -3120, -3250, -3950, -4100};    //distance between lanes
-                  //2    4      9      10     13      16    17      20      24
-  float[] laneY2 = {0, -400, -1490, -1650,  -2350,  -2900,  -3000, -3600, -4210};
-                   //7      11     14     21       25
+  //2    4      9      10     13      16    17      20      24
+  float[] laneY2 = {0, -400, -1490, -1650, -2350, -2900, -3000, -3600, -4210};
+  //7      11     14     21       25
   float[] laneY3 = {-1000, -1910, -2550, -3800, -4370};
 
   PShape shape;
@@ -55,12 +55,30 @@ class Footslogger {
     fill(0);
     rect(x - 2, y - 24, 4, 7.5);
     rect(x - 2, y + 15, 4, 7.5);
-    
-    
+
+
+    //trump eyebrows
+    if (type == "trump" && direction == "right") {
+      fill(0);
+      strokeWeight(2);
+      stroke(2);
+      line(x - 1, y + 10, x + 1, y + 3);
+      line(x - 1, y - 10, x + 1, y - 3);
+    }
+
+    if (type == "trump" && direction == "left") {
+      fill(0);
+      strokeWeight(2);
+      stroke(2);
+      line(x + 3, y - 3, x + 5, y - 10);
+      line(x + 3, y + 3, x + 5, y + 10);
+    }
+
     //zombie blood and eyes
-    if(type == "zombie") {
-       fill(#ED1D24);
-       ellipse(x - 5, y + 8, size - 26, size - 26);
+    if (type == "zombie") {
+      fill(#ED1D24);
+      ellipse(x - 5, y + 8, size - 26, size - 26);
+      ellipse(x + 5, y + 8, size - 26, size - 26);
     }
 
     //face determining direction of FS
@@ -99,6 +117,11 @@ class Footslogger {
         //peds will then return a blood splat  
         fill(#ED1D24);
         ellipse(x, y, size, size);
+        fill(0);
+        strokeWeight(2);
+        stroke(5);
+        line(x - 6, y - 12, x + 6, y + 12);
+        line(x + 6, y - 12, x - 6, y + 12);
       } 
 
       if (type == "zombie" && wanted != 0) {
@@ -106,12 +129,22 @@ class Footslogger {
         wanted--;
         fill(#ED1D24);
         ellipse(x, y, size, size);
+        fill(0);
+        strokeWeight(2);
+        stroke(5);
+        line(x - 6, y - 12, x + 6, y + 12);
+        line(x + 6, y - 12, x - 6, y + 12);
       }
 
       if (type == "gardai") {
         //Automatic lose when gardai is hit!
         fill(#ED1D24);
         ellipse(x, y, size, size);
+        fill(0);
+        strokeWeight(2);
+        stroke(5);
+        line(x - 6, y - 12, x + 6, y + 12);
+        line(x + 6, y - 12, x - 6, y + 12);
         wanted += 3;
       }
     }
@@ -141,18 +174,18 @@ class Footslogger {
     strokeWeight(2);
     rect(x, y, width, 80);
 
-    for ( x = 0; x < width; x += 65) {
+    for ( x = 0; x < width; x += 100) {
       fill(#F0FAF9);
       rect(x, y + 10, 15, 50);
     }
 
-    //the contents of FS, the positioning of the FS in lane, etc
-    footslog(fsX[0], y + 30, "pedestrian", "right");
-    footslog(fsX[1], y + 30, "trump", "right");
-    footslog(fsX[2], y + 30, "zombie", "right");
-    footslog(fsX[3], y + 15, "pedestrian", "left");
-    footslog(fsX[4], y + 60, "trump", "left");
-    footslog(fsX[5], y + 60, "gardai", "left");
+    //the contents of FS and starting point, the positioning of the FS in lane, etc
+    footslog(fsX[0] + 35, y + 30, "pedestrian", "right");
+    footslog(fsX[1] + 50, y + 30, "trump", "right");
+    footslog(fsX[2] + 60, y + 30, "zombie", "right");
+    footslog(fsX[3] - 20, y + 15, "pedestrian", "left");
+    footslog(fsX[4] - 45, y + 60, "trump", "left");
+    footslog(fsX[5] - 55, y + 60, "gardai", "left");
   }
 
   void lane3(float x, float y) {
@@ -161,12 +194,9 @@ class Footslogger {
     stroke(#5AABFF);
     strokeWeight(2);
     rect(x, y, width, 140);
-    
-     //if (pl1.playerPos.x + 50  > x && pl1.playerPos.x < x + 15   
-     // //  bottom side of player              bot side of fs
-     // && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 15) { 
+
     for (x = 0; x < width; x += 250) {
-      fill(#F0FAF9); // #1A1002);
+      fill(#F0FAF9); 
       rect(x, y, 50, 15);
     }
 
@@ -174,7 +204,7 @@ class Footslogger {
       fill(#F0FAF9); //#1A1002);
       rect(x, y + 125, 70, 15);
     }
-      //}
+    //}
 
 
     //the contents of FS, the positioning of the FS in lane, etc
@@ -183,7 +213,7 @@ class Footslogger {
     footslog(fsX[2] - 10, y + 30, "trump", "right");
     footslog(fsX[3] - 10, y + 115, "pedestrian", "right");
     footslog(fsX[3] - 40, y + 90, "pedestrian", "right");
-    footslog(fsX[4] - 5, y + 105, "zombie", "left");
+    footslog(fsX[4] - 50, y + 105, "zombie", "left");
     footslog(fsX[5] - 5, y + 80, "zombie", "left");
   }
 
@@ -216,13 +246,13 @@ class Footslogger {
     } else if ( wanted >= 30 && wanted <= 49) {
       star(width - 110, 25);
       star(width - 140, 25);
-    } else if ( wanted == 50) {
+    } else if ( wanted >= 50) {
       star(width - 140, 25);
       star(width - 170, 25);
       game_over = true;
     }
     // if wanted three times, game over and police arrives?
 
-    println(wanted);
+    // println(wanted);
   }
 }

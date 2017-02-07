@@ -11,17 +11,14 @@
 //                    b) Gas and gear is shown
 
 import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.effects.*;
-import ddf.minim.signals.*;
-import ddf.minim.spi.*;
-import ddf.minim.ugens.*;
 
-
+PFont font1, font2;
 int score = 0;
 float landY = height;    // length of the land field by height
 boolean game_start = false;
 boolean game_over = false;
+float ifaceX = 400; 
+float ifaceY = 25; 
 
 //Declare classes
 Player pl1;
@@ -29,6 +26,8 @@ Finisher gem;
 Obstacle obstacle;
 Footslogger fs;
 Reward scoreUp;
+
+//Declare sounds
 Minim minim;
 AudioPlayer ss_intro, ss_main;
 
@@ -44,6 +43,9 @@ void setup() {
   ss_main = minim.loadFile("ss_main.wav");
 
   ss_intro.loop();
+
+  font1 = loadFont("ard110.vlw");
+  font2 = loadFont("ard35.vlw");
 
   //Initialize Player class
   pl1 = new Player();
@@ -77,6 +79,30 @@ void gameBG() {
 }  // end gameBG method
 
 
+void font() {
+  if (game_start == false) {
+    textFont(font1, 110);
+    fill(255, 255, 255, 220);
+    text("Grand Theft", 90, 370);
+    fill(255, 220);
+    text("Crossy Road", 75, 450);
+  }
+
+  //Interface for gas and gear
+  textAlign(LEFT, CENTER);
+  textFont(font2, 35);
+  fill(255, 230);
+  text("Gas: " + pl1.gas, ifaceX - 150, ifaceY); 
+  text("Gear " + pl1.gear, ifaceX + 50, ifaceY);
+
+
+  //Interface for score
+  textAlign(LEFT, CENTER);
+  textFont(font2, 35);
+  fill(255, 230);
+  text("Quid: €" + score, ifaceX - 350, ifaceY);
+}
+
 void draw() {
 
   gameBG(); 
@@ -85,9 +111,9 @@ void draw() {
     ss_intro.close();
     ss_main.play();
     cursor(CROSS);
-    landY += 2.3;                //the scroll spreed of the land towards height
-    pl1.playerPos.y += 2.3;      //ensures the stance of the player towards the height
-  }
+    landY += 2.4;                //the scroll spreed of the land towards height
+    pl1.playerPos.y += 2.4;      //ensures the stance of the player towards the height
+  } 
 
 
   for (int i = 0; i < fs.fsX.length; i++) {      
@@ -144,6 +170,7 @@ void draw() {
 
   gameWin();
   gameOver();
+  font();
 }// end draw method
 
 void gameWin() {
@@ -153,10 +180,14 @@ void gameWin() {
 void gameOver() { 
   if (game_over == true)
   {
-    //text not showing up
-    text("B U S T E D", width/2 - 100, height/2 - 100, 800, 1000);
+
+    //Interface for score
+    textAlign(LEFT, CENTER);
+    textFont(font1, 110);
+    fill(255, 220);
+    text("B U S T E D", 140, 280);
     println("Game Over!");
-    noLoop();    //looks better with loop on
+    //noLoop();    //looks better with loop on
     // text( game over)
   }
 }

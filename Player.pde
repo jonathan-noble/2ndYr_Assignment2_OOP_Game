@@ -18,7 +18,7 @@ class Player {
 
   Player() {
     //cars = new PImage[3];
-     cars = loadImage("0.png");
+    cars = loadImage("0.png");
     playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
     speed = 2;
@@ -47,31 +47,31 @@ class Player {
 
     image(cars, playerPos.x, playerPos.y, size, size + 35);
   }
-  
+
   //ATTEMPT3 ON MAKING VEHICLE IMAGE FOLLOW MOUSE POINTER
-   //public void segment(float x, float y, float a) {
-   // pushMatrix();
-   // translate(x, y);
-   // rotate(a);    
-   // image(cars[0], 0, 0, size, size - 35);
-   // popMatrix();
+  //public void segment(float x, float y, float a) {
+  // pushMatrix();
+  // translate(x, y);
+  // rotate(a);    
+  // image(cars[0], 0, 0, size, size - 35);
+  // popMatrix();
   //}//
 
   //public void display() {
-   // //if(! space pressed then
-   // //choose characters between 1, 2, and 3 
-   // for (int i = 0; i < cars.length; i++) {
-   //   cars[i] = loadImage( i + ".png");
-   // }
+  // //if(! space pressed then
+  // //choose characters between 1, 2, and 3 
+  // for (int i = 0; i < cars.length; i++) {
+  //   cars[i] = loadImage( i + ".png");
+  // }
 
-   // float dx = mouseX - playerPos.x;
-   // float dy = mouseY - playerPos.y;
+  // float dx = mouseX - playerPos.x;
+  // float dy = mouseY - playerPos.y;
 
-   // angle = atan2(dy, dx);    
-   // playerPos.x = mouseX - (cos(angle) * segSize );
-   // playerPos.y = mouseY -(sin(angle) * segSize );
+  // angle = atan2(dy, dx);    
+  // playerPos.x = mouseX - (cos(angle) * segSize );
+  // playerPos.y = mouseY -(sin(angle) * segSize );
 
-   // segment(playerPos.x, playerPos.y, angle);
+  // segment(playerPos.x, playerPos.y, angle);
   //}////
 
   public void update() {
@@ -96,27 +96,27 @@ class Player {
     if ( gas == 50) {
       game_start = true;
     } else if (gas == 100) {
-      speed = 1.5;
+      speed = 2;
       acc.setMag(0.5);
       gear = 1;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 200) {
-      speed = 3;
+      speed = 4;
       acc.setMag(2);
       gear = 2;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 300) {
-      speed = 4;
+      speed = 6;
       acc.setMag(2.5);
       gear = 3;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 400) {
-      speed = 7.5;
+      speed = 9;
       acc.setMag(3);
       gear = 4;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas == 500) {
-      speed = 10;
+      speed = 12;
       acc.setMag(4);
       gear = 5;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
@@ -126,14 +126,14 @@ class Player {
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     }
 
-    //Interface for gas and gear
-    float ifaceX = 400;
-    float ifaceY = 25;
+    //if ( gas == 50) {
+    //  game_start = true;
 
-
-    textAlign(LEFT, CENTER);
-    text("Gas: " + gas, ifaceX - 75, ifaceY);
-    text("Gear " + gear, ifaceX, ifaceY);
+    //  for (gas = 0; gas < 1000; gas++ ) {           
+    //    gear++;
+    //    println("You are now in Gear: " + gear + ", Gas: " + gas);
+    //  }
+    //}
   }
 
 

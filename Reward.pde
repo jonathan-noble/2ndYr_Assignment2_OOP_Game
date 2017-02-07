@@ -1,6 +1,13 @@
 class Reward {
-  float[] rewardX = {350, 55, 250, 360, 560, 450, 450, 250 };
-  float[] rewardY = {320, 0 , -230, -450, -600 , -1000, -1500, -1750, -1900 };
+  float[] rewardX = {355, 400, 150, 360, 560, 250, 450, 
+    200, 450, 650, 550, 325, 650, 
+    250, 350, 450, 550, 375, 150, 600
+  };
+  float[] rewardY = {330, -100, -300, -450, -600, -800, -1050, 
+    -1400, -1600, -1750, -1900, -2100, -2300, 
+    -2850, -3050, -3250, -3450, -4150, -4350, -4350
+  };
+
   PImage vintage;
   float size;
   Player pl1;
@@ -20,16 +27,9 @@ class Reward {
       && pl1.playerPos.y + 45 > y && pl1.playerPos.y  < y + 5) { 
       score++;
     }
-    
+
     if (score == 1) {
       game_start = true;
     }
-    
-    //Interface for score
-    float ifaceX = 400;
-    float ifaceY = 25;
-     
-     textAlign(LEFT, CENTER);
-    text("Quid: €" + score, ifaceX - 200, ifaceY);
   }
 }

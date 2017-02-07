@@ -1,26 +1,22 @@
 //A possible class that holds inheritance over variance of obstacles e.g. Log of trees, train, river
 class Obstacle {
-  
-    //              //1      3    5      6     8     12    15      18      19    22      23
-  //oat[] laneY1 = {120, -200, -525, -750, -1350, -2200, -2670, -3120, -3250, -3950, -4100};    //distance between lanes
-    //              //2    4      9      10     13      16    17      20      24
-  //oat[] laneY2 = {0, -400, -1490, -1650,  -2350,  -2900,  -3000, -3600, -4210};
-    //               //7      11     14     21       25
-  //oat[] laneY3 = {-1000, -1910, -2550, -3800, -4370};
-                        
+                          
   float[] obstacleX = { 100, 200, 300, 400, 500, 600, 700,    
                         600, 200, 400, 700, 100, 300, 600,
-                        600, 200, 400, 200, 600, 150, 400,
-                        700, 400, 
+                        400, 200, 600, 150, 400, 700, 200, 
+                        500, 600, 100, 100, 400, 700, 500,
+                        300, 50, 250, 500, 750
                         
   };
   float[] obstacleY = { 570, 570, 570, 570, 570, 570, 570, 
                       //   1      2        3               4    
                         200, 200, 100 , -100, -100, -250, -360,
-                     //   5    5      6    7           8       
-                        -500, -500, -720, -850, -850, -1200, -1200,
-                      //         9
-                        -1200, -1350             
+                     //       6    7           8                 12
+                       -720, -850, -850, -1200, -1200, -1200,  -2000,
+                      //        15          20                  23
+                       -2000, -2500, -2500, -3550, -3550, -3550, -4050,
+                       //      25
+                       -4050,  -4350, - 4350, -4350, -4350
                          
   };
 
@@ -100,9 +96,9 @@ class Obstacle {
    // render();
     tree(x, y, size, size - 45, 6);
     //  right side of player           right side of obstacle
-    if (pl1.playerPos.x + 75  > x && pl1.playerPos.x < x + 15  
+    if (pl1.playerPos.x + 75  > x && pl1.playerPos.x < x + 10  
       //  bottom side of player              bot side of obst
-      && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 15) { 
+      && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 10) { 
       game_over = true;
     }
   }
