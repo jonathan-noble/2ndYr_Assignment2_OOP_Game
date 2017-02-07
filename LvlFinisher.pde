@@ -1,14 +1,13 @@
 class Finisher {
   float finPosX= width/2.2;
-  float finPosY = -4600;
+  float finPosY = -4800;
   PShape gem;
   float size;
-  int level;      
+  ;      
   Player pl1;
 
   Finisher(Player pl1) {
     size = 50;     
-    level = 1;        // 0 means intro screen, 1-3 means the levels of the game
     this.pl1 = pl1;
   }
 
@@ -32,10 +31,7 @@ class Finisher {
     if (pl1.playerPos.x + 40 > x && pl1.playerPos.x < x + 40 &&
       //  bottom side of player                            bot side of gem
       pl1.playerPos.y + 90 > y && pl1.playerPos.y < y + 50 ) {
-
-      // implement proper integer "level" incrementation
-      level++;
-      println("Good job! You're onto the bonus level!");
+      game_win = true;
     }
   }
 }

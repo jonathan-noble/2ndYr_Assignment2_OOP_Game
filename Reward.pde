@@ -26,6 +26,13 @@ class Reward {
     if (pl1.playerPos.x + 35  > x && pl1.playerPos.x < x + 20   
       && pl1.playerPos.y + 45 > y && pl1.playerPos.y  < y + 5) { 
       score++;
+
+      textFont(font2, 35);
+      fill(#56CB33);
+      text("+€", pl1.playerPos.x + 35, pl1.playerPos.y - 20);
+      sound_cash.pause();
+      sound_cash.rewind();
+      sound_cash.play();
     }
 
     if (score == 1) {

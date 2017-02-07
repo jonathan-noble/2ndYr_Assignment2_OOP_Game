@@ -34,10 +34,6 @@ class Player {
     update();
   }
 
-  public void levelUpdate() {
-    playerPos = new PVector(width/30, height/1.05);
-  }
-
   public void display() {
     //if(! space pressed then
     //choose characters between 1, 2, and 3 
@@ -92,39 +88,100 @@ class Player {
       gas++;
     }
 
-    //An interface to show current gas and gear if gas == 200 then it is gear 2
     if ( gas == 50) {
       game_start = true;
-    } else if (gas == 100) {
+    } else if (gas >= 100 && gas <= 199) {
       speed = 2;
       acc.setMag(0.5);
       gear = 1;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
       println("You are now in Gear: " + gear + ", Gas: " + gas);
-    } else if (gas == 200) {
+    } else if (gas >= 200 && gas <= 299) {
       speed = 4;
       acc.setMag(2);
       gear = 2;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
       println("You are now in Gear: " + gear + ", Gas: " + gas);
-    } else if (gas == 300) {
+    } else if (gas >= 300 && gas <= 399) {
       speed = 6;
       acc.setMag(2.5);
       gear = 3;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
       println("You are now in Gear: " + gear + ", Gas: " + gas);
-    } else if (gas == 400) {
+    } else if (gas >= 400 && gas <= 499) {
       speed = 9;
       acc.setMag(3);
       gear = 4;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
       println("You are now in Gear: " + gear + ", Gas: " + gas);
-    } else if (gas == 500) {
+    } else if (gas >= 500 && gas <= 599) {
       speed = 12;
       acc.setMag(4);
       gear = 5;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
       println("You are now in Gear: " + gear + ", Gas: " + gas);
-    } else if (gas == 650) {
-      gas = 50;
+    } else if (gas >= 600 && gas <= 699) {
+      gear = 0;
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas >= 700 && gas <= 799) {
+      speed = 1.5;
+      acc.setMag(0.65);
       gear = 1;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas >= 800 && gas <= 899) {
+      speed = 3.5;
+      acc.setMag(1.8);
+      gear = 2;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas >= 900 && gas <= 999) {
+      speed = 6;
+      acc.setMag(2.5);
+      gear = 3;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas >= 1000 && gas <= 1099) {
+      speed = 8;
+      acc.setMag(3);
+      gear = 4;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas >= 1100 && gas <= 1199) {
+      speed = 15;
+      acc.setMag(5);
+      gear = 5;
+      textFont(font2, 35);
+      fill(#F7BB14);
+      text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
+      println("You are now in Gear: " + gear + ", Gas: " + gas);
+    } else if (gas == 1200) {
+      gas = 0;
+      gear = 0;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     }
+
+
+
+
 
     //if ( gas == 50) {
     //  game_start = true;
@@ -135,10 +192,4 @@ class Player {
     //  }
     //}
   }
-
-
-  //Everything stops and "GAME OVER" text pops out + Back to Menu instead?
-  //void reset() { 
-  //  playerPos = new PVector(width/30, height/1.05);
-  //}
 }

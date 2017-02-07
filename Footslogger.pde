@@ -242,7 +242,6 @@ class Footslogger {
     //if wanted incremented, one star is lit up 
     if (wanted >= 1 && wanted <= 29) {
       star(width - 110, 25);
-      // background(0);
     } else if ( wanted >= 30 && wanted <= 49) {
       star(width - 110, 25);
       star(width - 140, 25);
@@ -251,8 +250,12 @@ class Footslogger {
       star(width - 170, 25);
       game_over = true;
     }
-    // if wanted three times, game over and police arrives?
 
-    // println(wanted);
+    if (wanted == 1) {
+      sound_radio.pause();
+      sound_radio.rewind();
+      sound_radio.play();
+    }
+    // if wanted three times, game over and police arrives?
   }
 }
