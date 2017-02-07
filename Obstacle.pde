@@ -1,23 +1,23 @@
 //A possible class that holds inheritance over variance of obstacles e.g. Log of trees, train, river
 class Obstacle {
-                          
-  float[] obstacleX = { 100, 200, 300, 400, 500, 600, 700,    
-                        600, 200, 400, 700, 100, 300, 600,
-                        400, 200, 600, 150, 400, 700, 200, 
-                        500, 600, 100, 100, 400, 700, 500,
-                        300, 50, 250, 500, 750
-                        
+
+  float[] obstacleX = { 100, 200, 300, 400, 500, 600, 700, 
+    600, 200, 400, 700, 100, 300, 600, 
+    400, 200, 600, 150, 400, 700, 200, 
+    500, 600, 100, 100, 400, 700, 500, 
+    300, 50, 250, 500, 750
+
   };
   float[] obstacleY = { 570, 570, 570, 570, 570, 570, 570, 
-                      //   1      2        3               4    
-                        200, 200, 100 , -100, -100, -250, -360,
-                     //       6    7           8                 12
-                       -720, -850, -850, -1200, -1200, -1200,  -2000,
-                      //        15          20                  23
-                       -2000, -2500, -2500, -3550, -3550, -3550, -4050,
-                       //      25
-                       -4050,  -4350, - 4350, -4350, -4350
-                         
+    //   1      2        3               4    
+    200, 200, 100, -100, -100, -250, -360, 
+    //       6    7           8                 12
+    -720, -850, -850, -1200, -1200, -1200, -2000, 
+    //        15          20                  23
+    -2000, -2500, -2500, -3550, -3550, -3550, -4050, 
+    //      25
+    -4050, -4350, - 4350, -4350, -4350
+
   };
 
   float size;
@@ -72,7 +72,7 @@ class Obstacle {
     }
     endShape(CLOSE);
   }
-  
+
   //ATTEMPT2
   public void render() {
     if (game_start == true) {
@@ -93,13 +93,17 @@ class Obstacle {
 
   public void display(float x, float y) {
 
-   // render();
+    // render();
     tree(x, y, size, size - 45, 6);
     //  right side of player           right side of obstacle
     if (pl1.playerPos.x + 75  > x && pl1.playerPos.x < x + 10  
       //  bottom side of player              bot side of obst
       && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 10) { 
-      game_over = true;
+      if (pl1.speed == 2.0 && pl1.speed == 4.0) {
+        pl1.speed -= 1.5;
+      } else {
+        pl1.speed -=5;
+      }
     }
   }
 }

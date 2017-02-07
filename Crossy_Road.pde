@@ -18,7 +18,7 @@ float landY = height;    // length of the land field by height
 boolean game_start = false;
 boolean game_over = false;
 boolean game_win = false;
-float ifaceX = 400; 
+float ifaceX = 500; 
 float ifaceY = 25; 
 
 //Declare classes
@@ -99,23 +99,29 @@ void hud() {
     text("Credit: 0 ", 50, height - 50);
   }
 
-  //hud for gas and gear
+  //hud for gas, gear and speed
   textAlign(LEFT, CENTER);
   textFont(font2, 35);
   fill(255, 230);
-  text("Gas: " + pl1.gas, ifaceX - 150, ifaceY); 
-  text("Gear " + pl1.gear, ifaceX + 50, ifaceY);
+  text("Gas: " + pl1.gas, ifaceX - 200, ifaceY); 
+  text("Gear " + pl1.gear, ifaceX, ifaceY);
 
   //hud for score
   textAlign(LEFT, CENTER);
   textFont(font2, 35);
   fill(255, 230);
-  text("Quid: €" + score, ifaceX - 350, ifaceY);
+  text("Quid: €" + score, ifaceX - 400, ifaceY);
 
-  //hud for framerate
+  textAlign(LEFT, CENTER);
   textFont(font2, 25);
   fill(255, 230);
-  text(frameRate, width - 200, height -50 );
+  text("Speed: " + pl1.speed*10 + "km/h", ifaceX + 50, ifaceY + 625);
+
+
+  //hud for framerate
+  textFont(font2, 15);
+  fill(255, 230);
+  text("FPS: " + int(frameRate) , 50, height - 70);
 }
 
 void draw() {
