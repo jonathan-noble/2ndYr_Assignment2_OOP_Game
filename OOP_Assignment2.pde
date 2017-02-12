@@ -15,11 +15,14 @@ import ddf.minim.*;
 PFont font1, font2;
 int score = 0;
 float landY = height;    // length of the land field by height
-boolean game_start = false;
-boolean game_over = false;
-boolean game_win = false;
 float ifaceX = 500; 
 float ifaceY = 25; 
+
+//game states
+boolean game_start = false;
+boolean game_win = false;
+boolean game_over = false;
+boolean game_restart = false;
 
 //Declare classes
 Player pl1;
@@ -60,7 +63,6 @@ void setup() {
   //Initialize Footslogger - pedestrian object
   fs = new Footslogger(pl1);
 
-
   //Initialize Obstacle - tree object
   obstacle = new Obstacle(pl1);
 
@@ -68,98 +70,11 @@ void setup() {
   scoreUp = new Reward(pl1);
 }
 
-void gameBG() {
-
-  background(#FF5AF4);  //background(#FF05EF);
-
-  //for loop indicates a shaded rect is incrementing to the distance of -4000 from landY
-  //y < 600 meaning keep looping until 600
-  //y+= 100 meaning the distance between each rects
-  for (float y = -4370; y < 600; y += 100) {
-    fill(#FF05EF); //#DE12D0);
-    rect(0, landY + y, width, 30);
-  }
-}  // end gameBG method
-
-
-void hud() {
-  if (game_start == false) {
-    textFont(font1, 110);
-    fill(255, 255, 255, 220);
-    text("Grand Theft", 90, 370);
-    fill(255, 220);
-    text("Crossy Road", 75, 450);
-    textFont(font2, 35);
-    fill(255, 230);
-    text("Credit: 1 ", 50, height - 50);
-  } else {
-    //hud for credit
-    textFont(font2, 35);
-    fill(255, 230);
-    text("Credit: 0 ", 50, height - 50);
-  }
-
-  //hud for gas, gear and speed
-  textAlign(LEFT, CENTER);
-  textFont(font2, 35);
-  fill(255, 230);
-  text("Gas: " + pl1.gas, ifaceX - 200, ifaceY); 
-  text("Gear " + pl1.gear, ifaceX, ifaceY);
-
-  //hud for score
-  textAlign(LEFT, CENTER);
-  textFont(font2, 35);
-  fill(255, 230);
-  text("Quid: €" + score, ifaceX - 400, ifaceY);
-
-  textAlign(LEFT, CENTER);
-  textFont(font2, 25);
-  fill(255, 230);
-  text("Speed: " + pl1.speed*10 + "km/h", ifaceX + 50, ifaceY + 625);
-
-
-  //hud for framerate
-  textFont(font2, 15);
-  fill(255, 230);
-  text("FPS: " + int(frameRate) , 50, height - 70);
-}
-
 void draw() {
 
-  gameBG(); 
+  gameStart();
 
-  if (game_start == true) {
-    ss_intro.close();
-    ss_main.play();
-    cursor(CROSS);
-    landY += 2.4;                //the scroll spreed of the land towards height
-    pl1.playerPos.y += 2.4;      //ensures the stance of the player towards the height
-  } 
-
-  for (int i = 0; i < fs.fsX.length; i++) {      
-    // The ternary operator used to decide whether a Footslogger index > 2 is true or false
-    //If true, it will add -5 to speed of fs from right. 
-    //However if false, it will add 2 to speed of fs from left.
-    fs.fsX[i] += i > 2 ? -6 : 4;
-  }
-
-  for (int i = 0; i < fs.laneY1.length; i++) {
-    fs.lane1(0, landY + fs.laneY1[i]); 
-    //landY is added so fs don't stay in the screen as game starts
-    fs.busted();
-  }
-
-  for (int i = 0; i < fs.laneY2.length; i++) {
-    fs.lane2(0, landY + fs.laneY2[i]);  
-    //landY is added so fs don't stay in the screen as game starts
-    fs.busted();
-  }
-
-  for (int i = 0; i < fs.laneY3.length; i++) {
-    fs.lane3(0, landY + fs.laneY3[i]);  
-    //landY is added so fs don't stay in the screen as game starts
-    fs.busted();
-  }
+  fs.display();
 
   for (int i = 0; i < scoreUp.rewardX.length; i++) {
     scoreUp.getScore(scoreUp.rewardX[i], scoreUp.rewardY[i] + landY);  
@@ -173,7 +88,6 @@ void draw() {
     //landY is added so obstacles don't stay in the screen as game starts
   }
 
-  gem.bonusUp();
   gem.display(gem.finPosX, gem.finPosY + landY); 
 
   //Boundary check
@@ -189,10 +103,27 @@ void draw() {
 
   gameWin();
   gameOver();
-  hud();
+  //gameRestart();
 }// end draw method
 
 
+//BEGIN GAME STATES
+void gameStart() {
+  if (game_start == true) {
+    ss_intro.close();
+    ss_main.play();
+    cursor(CROSS);
+    landY += 2.4;                //the scroll spreed of the land towards height
+    pl1.playerPos.y += 2.4;      //ensures the stance of the player towards the height
+  } 
+
+  for (int i = 0; i < fs.fsX.length; i++) {      
+    // The ternary operator used to decide whether a Footslogger index > 2 is true or false
+    //If true, it will add -5 to speed of fs from right. 
+    //However if false, it will add 2 to speed of fs from left.
+    fs.fsX[i] += i > 2 ? -6 : 4;
+  }
+}
 
 void gameWin() {
   if (game_win == true) {
@@ -212,9 +143,29 @@ void gameOver() {
     fill(255, 225, 200);
     text("B U S T E D", 130, 280);
     println("Game Over!");
-    noLoop();    //looks better with loop on
+    pl1.speed = 0;
   }
 }
+
+//void gameRestart() {
+//  if (game_over == true) {
+//    rect(width/2, height/2, 50, 50);
+
+//    if (mouseX > width/2 && mouseX < width/2 && mouseY > height/2 && mouseY < height/2) {
+//    //  if (mousePressed) {
+//        text("Try again?", width/2, height/2);
+//        //ss_intro.close();
+//        //ss_main.play();
+//        //cursor(CROSS);
+//        //landY += 2.4;                //the scroll spreed of the land towards height
+//        //pl1.playerPos.y += 2.4;      //ensures the stance of the player towards the height
+//     // }
+//    }
+//  }
+//}
+
+
+// END GAME STATES
 
 
 //error-check if keys are pressed correctly by user
