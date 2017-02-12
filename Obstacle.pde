@@ -1,6 +1,6 @@
 //A possible class that holds inheritance over variance of obstacles e.g. Log of trees, train, river
-class Obstacle {
-
+class Obstacle extends HUD { 
+  
   float[] obstacleX = { 100, 200, 300, 400, 500, 600, 700, 
     600, 200, 400, 700, 100, 300, 600, 
     400, 200, 600, 150, 400, 700, 200, 
@@ -73,27 +73,8 @@ class Obstacle {
     endShape(CLOSE);
   }
 
-  //ATTEMPT2
-  public void render() {
-    if (game_start == true) {
-      //  grow = true;
-      if (grow) { 
-        size += 1.5;
-        if (size == .01) {
-          grow = false;
-        }
-      } else {
-        size--;
-        if (size == 0) {
-          grow = true;
-        }
-      }
-    }
-  }
 
   public void display(float x, float y) {
-
-    // render();
     tree(x, y, size, size - 45, 6);
     //  right side of player           right side of obstacle
     if (pl1.playerPos.x + 75  > x && pl1.playerPos.x < x + 10  

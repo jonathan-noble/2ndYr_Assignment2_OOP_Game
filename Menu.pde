@@ -1,3 +1,11 @@
+//class that ensures the amount of vehicles and obstacles is set by levels
+//vehicles, obstacles and (maybe) Finishers are managed in an ArrayList 
+//since each level has more obstacles and vehicles involved
+//Ideally, there should be five levels (Noobs, Amateur, Intermediate, Professional, Hardcore)
+
+
+ 
+ 
  //ATTEMPT1
  //public void charSelect() {//PImage character) {
   //}

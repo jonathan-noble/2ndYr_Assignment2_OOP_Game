@@ -8,20 +8,21 @@ class Reward {
     -2850, -3050, -3250, -3450, -4150, -4350, -4350
   };
 
-  PImage vintage;
+  PImage quid;
   float size;
   Player pl1;
 
   Reward(Player pl1) {
-    size = 60;
-    vintage = loadImage("vintage.png");
+    size = 65;
+    quid = loadImage("quid.png");
+
     this.pl1 = pl1;
   }
 
   public void getScore(float x, float y) {
     fill(255);
     //ellipse(loc.x, loc.y - 5, size, size);
-    image(vintage, x, y, size, size);
+    image(quid, x, y, size, size);
 
     if (pl1.playerPos.x + 35  > x && pl1.playerPos.x < x + 20   
       && pl1.playerPos.y + 45 > y && pl1.playerPos.y  < y + 5) { 

@@ -1,4 +1,4 @@
-class Finisher {
+class Finisher extends HUD {
   float finPosX= width/2.2;
   float finPosY = -4800;
   PShape gem;
@@ -9,9 +9,6 @@ class Finisher {
   Finisher(Player pl1) {
     size = 50;     
     this.pl1 = pl1;
-  }
-
-  void bonusUp() {
   }
 
   void display(float x, float y) {
@@ -33,5 +30,7 @@ class Finisher {
       pl1.playerPos.y + 90 > y && pl1.playerPos.y < y + 50 ) {
       game_win = true;
     }
+
+    textDesign();
   }
 }

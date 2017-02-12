@@ -1,9 +1,7 @@
-//A possible class that holds inheritance over character selection of vehicles
-
 //key space is pressed to accelerate 
 //BUT every time space(gear) is pressed, gear is changed sequentially to make the player
 //accelerate in random speed and magnitude, G1-G6 then back to G1
-class Player {
+class Player extends HUD implements Objects {
   PImage cars;  //PImage[] cars;
   PVector playerPos;
   PVector vel;
@@ -35,40 +33,9 @@ class Player {
   }
 
   public void display() {
-    //if(! space pressed then
-    //choose characters between 1, 2, and 3 
-    //for (int i = 0; i < cars.length; i++) {
-    //  cars[i] = loadImage( i + ".png");
-    //}
-
     image(cars, playerPos.x, playerPos.y, size, size + 35);
   }
 
-  //ATTEMPT3 ON MAKING VEHICLE IMAGE FOLLOW MOUSE POINTER
-  //public void segment(float x, float y, float a) {
-  // pushMatrix();
-  // translate(x, y);
-  // rotate(a);    
-  // image(cars[0], 0, 0, size, size - 35);
-  // popMatrix();
-  //}//
-
-  //public void display() {
-  // //if(! space pressed then
-  // //choose characters between 1, 2, and 3 
-  // for (int i = 0; i < cars.length; i++) {
-  //   cars[i] = loadImage( i + ".png");
-  // }
-
-  // float dx = mouseX - playerPos.x;
-  // float dy = mouseY - playerPos.y;
-
-  // angle = atan2(dy, dx);    
-  // playerPos.x = mouseX - (cos(angle) * segSize );
-  // playerPos.y = mouseY -(sin(angle) * segSize );
-
-  // segment(playerPos.x, playerPos.y, angle);
-  //}////
 
   public void update() {
     // if spacebar is pressed, the acceleration of the vehicle is used
@@ -88,7 +55,7 @@ class Player {
       gas++;
     }
 
-    if ( gas == 50) {
+    if (gas == 50) {
       game_start = true;
     } else if (gas >= 100 && gas <= 199) {
       speed = 2;
@@ -131,6 +98,8 @@ class Player {
       text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas >= 600 && gas <= 699) {
+      speed = 1;
+      acc.setMag(0.35);
       gear = 0;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas >= 700 && gas <= 799) {
@@ -178,10 +147,6 @@ class Player {
       gear = 0;
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     }
-
-    
-
-
 
     //if ( gas == 50) {
     //  game_start = true;

@@ -2,7 +2,7 @@
 //and even zombies(potential scoreUp/starWantedDown)
 
 //3 stars wanted level = game over
-class Footslogger {
+class Footslogger extends HUD implements Objects {
   float[] fsX = {-50, -250, -350, 450, 650, 750};    // distance apart between pede
   //1      3    5      6     8     12    15      18      19    22      23
   float[] laneY1 = {120, -200, -525, -750, -1350, -2200, -2670, -3120, -3250, -3950, -4100};    //distance between lanes
@@ -147,6 +147,27 @@ class Footslogger {
         line(x + 6, y - 12, x - 6, y + 12);
         wanted += 3;
       }
+    }
+  }
+
+  void display() {
+    gameBG();
+    
+    for (int i = 0; i < laneY1.length; i++) {
+      lane1(0, landY + laneY1[i]);
+      //landY is added so fs don't stay in the screen as game starts
+      busted();
+    }
+
+    for (int i = 0; i < laneY2.length; i++) {
+      fs.lane2(0, landY + laneY2[i]);
+      busted();
+    }
+
+
+    for (int i = 0; i < laneY3.length; i++) {
+      fs.lane3(0, landY + laneY3[i]);  
+      busted();
     }
   }
 
