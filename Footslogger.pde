@@ -15,13 +15,11 @@ class Footslogger extends HUD implements Objects {
   float size;
   float speed;
   int wanted;
-  Player pl1;
 
-  Footslogger(Player pl1) {
+  Footslogger() {
     size = 30;
     speed = random(1, 10);
     wanted = 0;
-    this.pl1 = pl1;
   }
 
   void footslog(float x, float y, String type, String direction) {
@@ -151,7 +149,7 @@ class Footslogger extends HUD implements Objects {
   }
 
   void display() {
-    gameBG();
+   
     
     for (int i = 0; i < laneY1.length; i++) {
       lane1(0, landY + laneY1[i]);
@@ -269,7 +267,8 @@ class Footslogger extends HUD implements Objects {
     } else if ( wanted >= 50) {
       star(width - 140, 25);
       star(width - 170, 25);
-      game_over = true;
+      stateOfGame = 4;
+     // game_over = true;
     }
 
     if (wanted == 1) {

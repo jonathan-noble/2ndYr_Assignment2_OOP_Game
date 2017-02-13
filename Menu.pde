@@ -1,60 +1,30 @@
-//class that ensures the amount of vehicles and obstacles is set by levels
-//vehicles, obstacles and (maybe) Finishers are managed in an ArrayList 
-//since each level has more obstacles and vehicles involved
-//Ideally, there should be five levels (Noobs, Amateur, Intermediate, Professional, Hardcore)
+class Menu {
+  //universal y
+  float uy;
+  //x of button for instructions
+  float ix;
 
+  Menu() {
+    uy = height - 170;
+    ix = width - 450;
+  }
 
- 
- 
- //ATTEMPT1
- //public void charSelect() {//PImage character) {
-  //}
+  void display() {
 
-  //c1
-  //public void mouseReleased() {
+    if (mouseX  > ix && mouseX < ix + 85
+      && mouseY > uy && mouseY < uy + 60) {
+      fill(255);
+    } else {
+      fill(#EDA41D);
+    }
+    stroke(0);
+    rect(ix, uy, 85, 60);
+    fill(0);
+    textFont(font2, 35);
+    text("i", ix + 40, uy + 40);
 
-  //  //universal x
-  //  float ux = width - 200;
-  //  //y of button for char
-  //  float cy = height - 400;
-  //  //y of button for bg
-  //  //float by = height - 300;
-
-  //  //try mouseReleased or p5 controls
-  //  if (mouseX  > ux && mouseX < ux + 85
-  //    && mouseY > cy && mouseY < cy + 60) {
-  //    fill(255);
-
-  //    for (int i = 0; i < cars.length; i++) {
-  //      if (!checkKey(' ')) {
-
-  //        image(cars[i], playerPos.x, playerPos.y, size, size+35);
-  //      } else {
-  //        //c1
-  //        // float directionU = 0;
-  //        // directionU = ux + width;
-  //        ux = ux + 10;
-  //        // cy = cy + 20;
-  //        //by = by + ;
-  //        //cy = 0;
-  //        //by = 0;
-  //      }
-  //    }
-  //  } else {
-  //    fill(#EDA41D);
-  //  }
-
-
-  //  stroke(0);
-  //  rect(ux, cy, 85, 60);
-
-  //  //if (mousePressed && mouseX  > ux && mouseX < ux + 85
-  //  //  && mouseY > by && mouseY < by + 60) {
-  //  //  fill(255);
-  //  //  //return mousePressed value to change bg pre-coded/hard coded bg; type
-  //  //} else {
-  //  //  fill(#EDA41D);
-  //  //}
-  //  //stroke(0);
-  //  //rect(ux, by, 85, 60);
-  //}
+    if (stateOfGame == 2) {
+      uy += 2;
+    }
+  }
+}

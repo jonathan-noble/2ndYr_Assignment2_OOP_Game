@@ -22,13 +22,11 @@ class Obstacle extends HUD {
 
   float size;
   boolean grow = true;
-  Player pl1;
+  
 
-
-  Obstacle(Player pl1) {
+  Obstacle() {
     //CREATE A FUNCTION TO CHECK AND ENSURE THAT OBSTACLE WOULD NOT SPAWN NEAR THE PLAYER
     size = 55; // 0
-    this.pl1 = pl1;
   }
 
   public void tree(float x, float y, float radius1, float radius2, int npoints) {

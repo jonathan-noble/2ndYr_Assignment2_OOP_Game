@@ -19,7 +19,7 @@ class Player extends HUD implements Objects {
     cars = loadImage("0.png");
     playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
-    speed = 2;
+    speed = 2.5;
     gas = 0;
     gear = 1;
     angle = 0;
@@ -55,10 +55,8 @@ class Player extends HUD implements Objects {
       gas++;
     }
 
-    if (gas == 50) {
-      game_start = true;
-    } else if (gas >= 100 && gas <= 199) {
-      speed = 2;
+    if (gas >= 100 && gas <= 199) {
+      speed = 3;
       acc.setMag(0.5);
       gear = 1;
       textFont(font2, 35);

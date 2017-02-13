@@ -1,14 +1,11 @@
 class Finisher extends HUD {
   float finPosX= width/2.2;
-  float finPosY = -4800;
+  float finPosY = -4800; 
   PShape gem;
   float size;
-  ;      
-  Player pl1;
 
-  Finisher(Player pl1) {
+  Finisher() {
     size = 50;     
-    this.pl1 = pl1;
   }
 
   void display(float x, float y) {
@@ -24,11 +21,12 @@ class Finisher extends HUD {
     fill(255);
     shape(gem, x, y, size, size);
 
+
     //  right side of player                           right side of gem
-    if (pl1.playerPos.x + 40 > x && pl1.playerPos.x < x + 40 &&
+    if (pl1.playerPos.x + 20 > x && pl1.playerPos.x < x + 40 &&
       //  bottom side of player                            bot side of gem
       pl1.playerPos.y + 90 > y && pl1.playerPos.y < y + 50 ) {
-      game_win = true;
+      stateOfGame = 3;
     }
 
     textDesign();

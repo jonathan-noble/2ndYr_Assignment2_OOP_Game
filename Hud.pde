@@ -12,7 +12,7 @@ abstract class HUD {
   void gameBG() {
 
     background(#FF5AF4);  
-    
+
     //for loop indicates a shaded rect is incrementing to the distance of -4000 from landY
     //y < 600 meaning keep looping until 600
     //y+= 100 meaning the distance between each rects
@@ -20,28 +20,59 @@ abstract class HUD {
       fill(#FF05EF); //#DE12D0);
       rect(0, landY + y, width, 30);
     }
+
+    fill(50, 50, 50, 150);
+    rect(0, height-25, width, 25);
+    rect(0, 0, 45, height);
+    rect(width-45, 0, 45, height);
   }  // end gameBG method
 
+  void textMenu() {
+
+    textFont(font1, 50);
+    fill(150, random(50, 100), 255, random(200, 255));
+    text("HOLD the Spacebar to PLAY!", 65, 50);
+
+
+    float x1Pos = 95;
+    float x2Pos = 90;
+    float xSpeed1 = 5;
+    float xSpeed2 = -5;
+
+    x1Pos += xSpeed1;
+    x2Pos += xSpeed2;
+
+    //if (x1Pos > width) {
+    //  x1Pos = 0;
+    //}
+
+    //if (x2Pos > 0) {
+    //  x2Pos = width;
+    //}
+
+    textFont(font1, 110);
+    fill(255, 255, 255, 220);
+    text("Grand Theft", x1Pos, 370);
+    fill(255, 220);
+    text("Crossy Road", x2Pos, 450);
+
+
+
+
+    //hud for credit
+    textFont(font2, 35);
+    fill(255, 230);
+    text("Credit: " + 1, 50, height - 50);
+  }
 
   void textDesign() {
 
     textAlign(LEFT, CENTER);
 
-    if (game_start == false) {
-      textFont(font1, 110);
-      fill(255, 255, 255, 220);
-      text("Grand Theft", 90, 370);
-      fill(255, 220);
-      text("Crossy Road", 75, 450);
-      textFont(font2, 35);
-      fill(255, 230);
-      text("Credit: 1 ", 50, height - 50);
-    } else {
-      //hud for credit
-      textFont(font2, 35);
-      fill(255, 230);
-      text("Credit: 0 ", 50, height - 50);
-    }
+    //hud for credit
+    textFont(font2, 35);
+    fill(255, 230);
+    text("Credit: " + 0, 50, height - 50);
 
     //hud for player's gas and gear
     textFont(font2, 35);
