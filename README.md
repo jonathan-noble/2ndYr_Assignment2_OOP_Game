@@ -1,5 +1,5 @@
 # 2ndYr_Assignment2_OOP_Game
-A game I made - "Grand Theft Crossy Road" - mashed up by two influential games I love, GTA1 + Crossy Road, is where the player IS the vehicle and tries to avoid pedestrians, officials and coconut trees in order to win the game!
+A game I made - "Grand Theft Crossy Road" - is a crossover of the two influential games I love, GTA1 + Crossy Road, is where the player IS the vehicle and tries to avoid running over pedestrians, officials (apart from zombies) and coconut trees in order to win the game!
 
 1. The game is set on a platformer style where the obstacles and pedestrians(footsloggers) are already set on or before the screen
 2. Player positioned from the bottom centre 
@@ -8,12 +8,18 @@ A game I made - "Grand Theft Crossy Road" - mashed up by two influential games I
 5. Highest score is recorded on the current levels played
 
 ## Features to look out for
-1. Gear
-2. Three stars - three strikes
-3. ternary operator
-4. Menu - Leaderboard, Vehicle Selection
+1. Every time a gear changes, the speed and magnitude of the vehicle goes up!
+2. A HUD with: 
+a) Money (reward) collected SO EACH SCORE IS RECORDED IN THE LEADERBOARD
+b) Gas, speed and gear is shown
+c) 3-star wanted levels fluctuate every time the player runs over a footslogger
+3. Game
+a) When gardas are hit, the wanted level goes up higher
+b) When the zombies are hit, the wanted level goes down
+c) Obstacle (trees) slow you down so avoid them!
+d) High Score is also recorded
+4. Menu - Info
 5. Own sound produced is used in game
-6. Nitro boosters!!!
 
 
 ### Observations on the specifications of the requirements in order to ensure game's smooth process
