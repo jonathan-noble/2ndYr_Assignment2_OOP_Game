@@ -40,7 +40,7 @@ Guards guard;
 Minim minim;
 AudioPlayer ss_intro, ss_main;
 @SuppressWarnings( "deprecation" )
-AudioSnippet sound_cash, sound_radio, sound_GO, sound_win, sound_ow, sound_popo, sound_zombie;
+AudioSnippet sound_cash, sound_radio, sound_GO, sound_win, sound_ow, sound_popo, sound_zombie, sound_engine;
 @SuppressWarnings( "deprecation" )
 
   void setup() {
@@ -61,6 +61,7 @@ AudioSnippet sound_cash, sound_radio, sound_GO, sound_win, sound_ow, sound_popo,
   sound_ow = minim.loadSnippet("ow.mp3");
   sound_popo = minim.loadSnippet("police.mp3");
   sound_zombie = minim.loadSnippet("zombie.mp3");
+  sound_engine = minim.loadSnippet("car_engine.mp3");
 
   ss_intro.setGain(-20);
   ss_intro.loop();

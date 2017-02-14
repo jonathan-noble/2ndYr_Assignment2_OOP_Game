@@ -7,7 +7,6 @@ class gameState extends HUD {
   void gameMenu() {
 
     gameBG();
-    textMenu();
 
     for (int i = 0; i < fs.fsX.length; i++) {      
       // The ternary operator used to decide whether a Footslogger index > 2 is true or false
@@ -18,6 +17,7 @@ class gameState extends HUD {
 
     fs.display();
 
+    textMenu();
     menu.display();
 
     if (checkKey(' ')) {
@@ -29,6 +29,8 @@ class gameState extends HUD {
 
     gameBG();
     ss_intro.close();
+    sound_engine.setGain(-5);
+    sound_engine.play();
     ss_main.setGain(-13);
     ss_main.play();
     cursor(CROSS);
@@ -81,8 +83,6 @@ class gameState extends HUD {
     textFont(font2, 35); 
     text("HIGH SCORE: ", width/2 - 150, height/2 - 100);
     text(high_score[0], width/2 + 50, height/2 - 100);
-    
-    
   }
 
   void gameOver() { 
@@ -98,6 +98,16 @@ class gameState extends HUD {
     textFont(font2, 35); 
     text("HIGH SCORE: ", width/2 - 150, height/2);
     text(high_score[0], width/2 + 50, height/2);
+
+    fill(10, 220);
+    text("Try again? Press spacebar!", 175, 500);
+    if (checkKey(' ')) {
+      setup();
+      score = 0;
+      landY = 100;
+      pl1.playerPos.y = height/1.3;
+      stateOfGame = 1;
+    }
   }
 
   // END GAME STATES

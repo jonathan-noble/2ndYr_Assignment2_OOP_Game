@@ -20,7 +20,7 @@ class Menu {
       if (mousePressed) {
         fill(255, 230);
         stroke(1);
-        rect(ax - 10, ay - 30, 635, 70);        
+        rect(ax - 10, ay - 30, 635, 80);        
         fill(#1A84C4);
         textFont(font2, 30);
         text("Use Mouse for Direction", ax + 140, ay);
@@ -41,18 +41,18 @@ class Menu {
         fill(#E84B2F);
         textFont(font2, 23);
         text("Kill All the Zombies!", ax, ay + 270);
-        textFont(font2, 12);
-        text("-1 Star Wanted", ax + 45, ay + 300);
-        fs.footslog(ax + 25, ay + 300, "zombie", "right");
-        fs.footslog(ax + 175, ay + 300, "zombie", "left");
+        textFont(font2, 15);
+        text("-1 Star Wanted", ax + 50, ay + 300);
+        fs.footslog(ax + 25, ay + 310, "zombie", "right");
+        fs.footslog(ax + 175, ay + 310, "zombie", "left");
 
         fill(255, 230);
         stroke(1);
         rect(ax - 10, ay + 380, 220, 120);
         fill(#E84B2F);
         textFont(font2, 23);
-        text("Collect the Gem", ax + 20, ay + 410);
-        text("to WIN!", ax + 65, ay + 430);
+        text("Grab the Gem", ax + 25, ay + 400);
+        text("to WIN!", ax + 65, ay + 420);
         gem = createShape();
         gem.beginShape();
         gem.fill(random(237, 5), random(100, 230));
@@ -71,7 +71,7 @@ class Menu {
         text("AVOID THESE FOOTSLOGGERS", ax + 290, ay + 100);
         textFont(font2, 20);
         text("3 Star Wanted level = Game Over!", ax + 300, ay + 300);
-        textFont(font2, 12);
+        textFont(font2, 15);
         text("+2 Star Wanted", ax + 460, ay + 190);
         fs.footslog(ax + 360, ay + 140, "pedestrian", "right");
         fs.footslog(ax + 530, ay + 140, "pedestrian", "left");
@@ -87,7 +87,7 @@ class Menu {
         textFont(font2, 25);
         text("& AVOID THE COCONUT TREES", ax + 290, ay + 370);
         textFont(font2, 15);
-        text("as they SLOW you down!", ax + 370, ay + 480);
+        text("as they SLOW you down!", ax + 370, ay + 490);
         obstacle.tree(ax + 450, ay + 420, obstacle.size, obstacle.size - 45, 6);
       }
     } else {

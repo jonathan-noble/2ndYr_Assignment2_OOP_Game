@@ -58,7 +58,11 @@ abstract class HUD {
     textFont(font2, 35);
     fill(20, 220); 
     text("Gas: " + pl1.gas, ifaceX - 200, ifaceY); 
-    text("Gear " + pl1.gear, ifaceX - 25, ifaceY);
+    if (pl1.gear == 0) {
+      text("Gear N", ifaceX - 25, ifaceY);
+    } else {
+      text("Gear " + pl1.gear, ifaceX - 25, ifaceY);
+    }
 
     // hud for score
     textFont(font2, 35);
