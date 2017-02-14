@@ -1,6 +1,5 @@
 //A possible class that holds inheritance over variance of obstacles e.g. Log of trees, train, river
 class Obstacle extends HUD { 
-  
   float[] obstacleX = { 100, 200, 300, 400, 500, 600, 700, 
     600, 200, 400, 700, 100, 300, 600, 
     400, 200, 600, 150, 400, 700, 200, 
@@ -22,7 +21,7 @@ class Obstacle extends HUD {
 
   float size;
   boolean grow = true;
-  
+
 
   Obstacle() {
     //CREATE A FUNCTION TO CHECK AND ENSURE THAT OBSTACLE WOULD NOT SPAWN NEAR THE PLAYER
@@ -30,7 +29,6 @@ class Obstacle extends HUD {
   }
 
   public void tree(float x, float y, float radius1, float radius2, int npoints) {
-    //shape of tree - could be extended to a class (inheritance)
     float theta = TWO_PI / npoints;
     float halfTheta = theta/2.0;
     color trunk = color(#BC7A33);
@@ -73,7 +71,9 @@ class Obstacle extends HUD {
 
 
   public void display(float x, float y) {
+
     tree(x, y, size, size - 45, 6);
+
     //  right side of player           right side of obstacle
     if (pl1.playerPos.x + 75  > x && pl1.playerPos.x < x + 10  
       //  bottom side of player              bot side of obst

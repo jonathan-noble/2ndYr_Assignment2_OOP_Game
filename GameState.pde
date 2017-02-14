@@ -7,7 +7,6 @@ class gameState extends HUD {
   void gameMenu() {
 
     gameBG();
-    menu.display();
     textMenu();
 
     for (int i = 0; i < fs.fsX.length; i++) {      
@@ -19,6 +18,8 @@ class gameState extends HUD {
 
     fs.display();
 
+    menu.display();
+
     if (checkKey(' ')) {
       stateOfGame = 2;
     }
@@ -27,8 +28,8 @@ class gameState extends HUD {
   void gameStart() {
 
     gameBG();
-
     ss_intro.close();
+    ss_main.setGain(-13);
     ss_main.play();
     cursor(CROSS);
     landY += 2.4;                //the scroll spreed of the land towards height
@@ -39,16 +40,17 @@ class gameState extends HUD {
       // The ternary operator used to decide whether a Footslogger index > 2 is true or false
       //If true, it will add -5 to speed of fs from right. 
       //However if false, it will add 2 to speed of fs from left.
-      fs.fsX[i] += i > 2 ? -6 : 4;
+      fs.fsX[i] += i > 2 ? -8 : 6;
     }
-
 
     fs.display();
 
     for (int i = 0; i < scoreUp.rewardX.length; i++) {
       scoreUp.getScore(scoreUp.rewardX[i], scoreUp.rewardY[i] + landY);  
+      fs.busted();
       //landY is added so scoreUp don't stay in the screen as game starts
     }
+
 
     pl1.run();
     guard.run();
@@ -58,7 +60,7 @@ class gameState extends HUD {
       //landY is added so obstacles don't stay in the screen as game starts
     }
 
-    gem.display(gem.finPosX, gem.finPosY + landY); 
+    Gem.display(Gem.finPosX, Gem.finPosY + landY); 
 
     //Boundary check
     if (pl1.playerPos.x > width - 30 || pl1.playerPos.x < 0 + 30
@@ -69,48 +71,34 @@ class gameState extends HUD {
 
   void gameWin() {
     textFont(font1, 110);
+    ss_main.close();
+    sound_win.play();
     fill(255, 200);
-    text("W I N", 275, 280);
+    stroke(2);
+    text("W  I  N", 220, 300);
     println("Good job! You wonnered the game!");
 
     textFont(font2, 35); 
     text("HIGH SCORE: ", width/2 - 150, height/2 - 100);
     text(high_score[0], width/2 + 50, height/2 - 100);
+    
+    
   }
 
   void gameOver() { 
     ss_intro.close();
     ss_main.close();
-    sound_GO.play();
+    sound_GO.play();               
+    pl1.speed = 0;
     textFont(font1, 110);
     fill(255, 225, 200);
+    stroke(2);
     text("B U S T E D", 130, 280);
     println("Game Over!");
-    pl1.speed = 0;
-
     textFont(font2, 35); 
     text("HIGH SCORE: ", width/2 - 150, height/2);
     text(high_score[0], width/2 + 50, height/2);
   }
-
-  //void gameRestart() {
-  //  if (game_over == true) {
-  //    rect(width/2, height/2, 50, 50);
-
-  //    if (mouseX > width/2 && mouseX < width/2 && mouseY > height/2 && mouseY < height/2) {
-  //    //  if (mousePressed) {
-  //        text("Try again?", width/2, height/2);
-  //        //ss_intro.close();
-  //        //ss_main.play();
-  //        //cursor(CROSS);
-  //        //landY += 2.4;                //the scroll spreed of the land towards height
-  //        //pl1.playerPos.y += 2.4;      //ensures the stance of the player towards the height
-  //      stateOfGame == 2;
-  //     // }
-  //    }
-  //  }
-  //}
-
 
   // END GAME STATES
 }

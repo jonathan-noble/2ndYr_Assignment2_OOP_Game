@@ -21,7 +21,7 @@ class Player extends HUD implements Objects {
     vel = new PVector(0, 0);
     speed = 2.5;
     gas = 0;
-    gear = 1;
+    gear = 0;
     angle = 0;
     size = 60;
     segSize = 50;
@@ -75,6 +75,8 @@ class Player extends HUD implements Objects {
       speed = 6;
       acc.setMag(2.5);
       gear = 3;
+      landY += 0.3;
+      pl1.playerPos.y += 0.3;  
       textFont(font2, 35);
       fill(#F7BB14);
       text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
@@ -91,17 +93,21 @@ class Player extends HUD implements Objects {
       speed = 12;
       acc.setMag(4);
       gear = 5;
+      landY += 0.5;
+      pl1.playerPos.y += 0.5;  
       textFont(font2, 35);
       fill(#F7BB14);
       text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas >= 600 && gas <= 699) {
-      speed = 1;
+      speed = 2;
       acc.setMag(0.35);
       gear = 0;
+      fill(#E33535);
+      text("OVERHEAT!", playerPos.x - 35, playerPos.y - 20);
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     } else if (gas >= 700 && gas <= 799) {
-      speed = 1.5;
+      speed = 2.5;
       acc.setMag(0.65);
       gear = 1;
       textFont(font2, 35);
@@ -112,6 +118,8 @@ class Player extends HUD implements Objects {
       speed = 3.5;
       acc.setMag(1.8);
       gear = 2;
+      landY += 0.7;
+      pl1.playerPos.y += 0.7; 
       textFont(font2, 35);
       fill(#F7BB14);
       text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
@@ -120,6 +128,8 @@ class Player extends HUD implements Objects {
       speed = 6;
       acc.setMag(2.5);
       gear = 3;
+      landY += 1;
+      pl1.playerPos.y += 1; 
       textFont(font2, 35);
       fill(#F7BB14);
       text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
@@ -128,6 +138,8 @@ class Player extends HUD implements Objects {
       speed = 8;
       acc.setMag(3);
       gear = 4;
+      landY += 1.5;
+      pl1.playerPos.y += 1.5; 
       textFont(font2, 35);
       fill(#F7BB14);
       text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
@@ -136,6 +148,8 @@ class Player extends HUD implements Objects {
       speed = 15;
       acc.setMag(5);
       gear = 5;
+      landY += 2;
+      pl1.playerPos.y += 2; 
       textFont(font2, 35);
       fill(#F7BB14);
       text("^G" + gear, playerPos.x - 35, playerPos.y - 20);
@@ -146,13 +160,5 @@ class Player extends HUD implements Objects {
       println("You are now in Gear: " + gear + ", Gas: " + gas);
     }
 
-    //if ( gas == 50) {
-    //  game_start = true;
-
-    //  for (gas = 0; gas < 1000; gas++ ) {           
-    //    gear++;
-    //    println("You are now in Gear: " + gear + ", Gas: " + gas);
-    //  }
-    //}
   }
 }

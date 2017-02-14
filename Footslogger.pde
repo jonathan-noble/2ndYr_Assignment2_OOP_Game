@@ -89,7 +89,7 @@ class Footslogger extends HUD implements Objects {
       rect(x - 5, y + 3, 4, 6);
       rect(x - 5, y - 12, 4, 6);
     }
-
+    
     // linked to the index of the ternary operator ( i > 2)
     //True since index produced is more than 2
     for (int i = 0; i <= 2; i++) {
@@ -111,6 +111,9 @@ class Footslogger extends HUD implements Objects {
       //  bottom side of player              bot side of fs
       && pl1.playerPos.y + 110 > y && pl1.playerPos.y  < y + 15) { 
       if (type == "trump" || type == "pedestrian") {
+        sound_ow.setGain(-22);
+        sound_ow.rewind();
+        sound_ow.play();
         wanted++;
         //peds will then return a blood splat  
         fill(#ED1D24);
@@ -123,6 +126,9 @@ class Footslogger extends HUD implements Objects {
       } 
 
       if (type == "zombie" && wanted != 0) {
+        sound_zombie.setGain(-10);
+        sound_zombie.rewind();
+        sound_zombie.play();
         //Kill all zombies!
         wanted--;
         fill(#ED1D24);
@@ -135,7 +141,10 @@ class Footslogger extends HUD implements Objects {
       }
 
       if (type == "gardai") {
-        //Automatic lose when gardai is hit!
+        sound_popo.setGain(-22);
+        sound_popo.rewind();
+        sound_popo.play();
+        //Instant when gardai is hit!
         fill(#ED1D24);
         ellipse(x, y, size, size);
         fill(0);
@@ -149,23 +158,20 @@ class Footslogger extends HUD implements Objects {
   }
 
   void display() {
-   
-    
+
+
     for (int i = 0; i < laneY1.length; i++) {
       lane1(0, landY + laneY1[i]);
       //landY is added so fs don't stay in the screen as game starts
-      busted();
     }
 
     for (int i = 0; i < laneY2.length; i++) {
       fs.lane2(0, landY + laneY2[i]);
-      busted();
     }
 
 
     for (int i = 0; i < laneY3.length; i++) {
       fs.lane3(0, landY + laneY3[i]);  
-      busted();
     }
   }
 
@@ -260,15 +266,15 @@ class Footslogger extends HUD implements Objects {
   void busted() {
     //if wanted incremented, one star is lit up 
     if (wanted >= 1 && wanted <= 29) {
-      star(width - 110, 25);
+      star(width - 100, 25);
     } else if ( wanted >= 30 && wanted <= 49) {
-      star(width - 110, 25);
-      star(width - 140, 25);
+      star(width - 100, 25);
+      star(width - 130, 25);
     } else if ( wanted >= 50) {
-      star(width - 140, 25);
-      star(width - 170, 25);
+      star(width - 100, 25);
+      star(width - 130, 25);
+      star(width - 160, 25);
       stateOfGame = 4;
-     // game_over = true;
     }
 
     if (wanted == 1) {
@@ -276,6 +282,6 @@ class Footslogger extends HUD implements Objects {
       sound_radio.rewind();
       sound_radio.play();
     }
-    // if wanted three times, game over and police arrives?
+    // if wanted three times, game over and police arrives
   }
 }

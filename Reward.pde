@@ -28,7 +28,6 @@ class Reward {
       textFont(font2, 35);
       fill(#56CB33);
       text("+€", pl1.playerPos.x + 35, pl1.playerPos.y - 20);
-      sound_cash.pause();
       sound_cash.rewind();
       sound_cash.play();
     }

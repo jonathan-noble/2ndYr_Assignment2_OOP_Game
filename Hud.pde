@@ -6,7 +6,6 @@
 // Some of the methods can be abstract. That means they have no body
 // If the subclass doesn't implement the abstract methods, then it too is abstract
 // You can use abstract classes to ensure that a class has an implementation of the abstract methods
-
 abstract class HUD {
 
   void gameBG() {
@@ -17,7 +16,7 @@ abstract class HUD {
     //y < 600 meaning keep looping until 600
     //y+= 100 meaning the distance between each rects
     for (float y = -4370; y < 600; y += 100) {
-      fill(#FF05EF); //#DE12D0);
+      fill(#FF05EF); 
       rect(0, landY + y, width, 30);
     }
 
@@ -31,33 +30,14 @@ abstract class HUD {
 
     textFont(font1, 50);
     fill(150, random(50, 100), 255, random(200, 255));
-    text("HOLD the Spacebar to PLAY!", 65, 50);
+    text("HOLD the Spacebar to PLAY!", 75, height - 100);
 
-
-    float x1Pos = 95;
-    float x2Pos = 90;
-    float xSpeed1 = 5;
-    float xSpeed2 = -5;
-
-    x1Pos += xSpeed1;
-    x2Pos += xSpeed2;
-
-    //if (x1Pos > width) {
-    //  x1Pos = 0;
-    //}
-
-    //if (x2Pos > 0) {
-    //  x2Pos = width;
-    //}
 
     textFont(font1, 110);
     fill(255, 255, 255, 220);
-    text("Grand Theft", x1Pos, 370);
+    text("Grand Theft", 95, 370);
     fill(255, 220);
-    text("Crossy Road", x2Pos, 450);
-
-
-
+    text("Crossy Road", 90, 450);
 
     //hud for credit
     textFont(font2, 35);
@@ -71,26 +51,28 @@ abstract class HUD {
 
     //hud for credit
     textFont(font2, 35);
-    fill(255, 230);
+    fill(20, 220);
     text("Credit: " + 0, 50, height - 50);
 
     //hud for player's gas and gear
     textFont(font2, 35);
-    fill(255, 255);
+    fill(20, 220); 
     text("Gas: " + pl1.gas, ifaceX - 200, ifaceY); 
-    text("Gear " + pl1.gear, ifaceX, ifaceY);
+    text("Gear " + pl1.gear, ifaceX - 25, ifaceY);
 
     // hud for score
     textFont(font2, 35);
-    fill(255, 255);
+    fill(20, 220); 
     text("Quid: €" + score, ifaceX - 400, ifaceY);
 
-    textFont(font2, 25);
-    fill(255, 255);
+    //hud for speed
+    textFont(font2, 35);
+    fill(20, 220);             
     text("Speed: " + int(pl1.speed*10) + "km/h", ifaceX + 50, ifaceY + 625);
 
+    //hud for FPS
     textFont(font2, 15);
-    fill(255, 255);
+    fill(20, 220);
     text("FPS: " + int(frameRate), 50, height - 70);
   }
 }

@@ -30,7 +30,7 @@ float ifaceY = 25;
 gameState state;
 Menu menu;
 Player pl1;
-Finisher gem;
+Finisher Gem;
 Obstacle obstacle;
 Footslogger fs;
 Reward scoreUp;
@@ -40,9 +40,8 @@ Guards guard;
 Minim minim;
 AudioPlayer ss_intro, ss_main;
 @SuppressWarnings( "deprecation" )
-AudioSnippet sound_cash, sound_radio, sound_GO;
+AudioSnippet sound_cash, sound_radio, sound_GO, sound_win, sound_ow, sound_popo, sound_zombie;
 @SuppressWarnings( "deprecation" )
-
 
   void setup() {
 
@@ -58,12 +57,17 @@ AudioSnippet sound_cash, sound_radio, sound_GO;
   sound_cash = minim.loadSnippet("cash.mp3");
   sound_radio = minim.loadSnippet("radio.mp3");
   sound_GO = minim.loadSnippet("game_over.mp3");
+  sound_win = minim.loadSnippet("win.mp3");
+  sound_ow = minim.loadSnippet("ow.mp3");
+  sound_popo = minim.loadSnippet("police.mp3");
+  sound_zombie = minim.loadSnippet("zombie.mp3");
 
+  ss_intro.setGain(-20);
   ss_intro.loop();
 
   font1 = loadFont("ard110.vlw");
   font2 = loadFont("ard35.vlw");
-  high_score = loadStrings("high_score.txt");
+  high_score = loadStrings("data/high_score.txt");
 
   //Initialize stateOfGameate class
   state = new gameState();
@@ -75,7 +79,7 @@ AudioSnippet sound_cash, sound_radio, sound_GO;
   pl1 = new Player();
 
   //Initialize Finisher class
-  gem = new Finisher();
+  Gem = new Finisher();
 
   //Initialize Footslogger - pedestrian object
   fs = new Footslogger();
@@ -114,7 +118,6 @@ void draw() {
       break;
     }
   }
-  //gameRestart();
 }// end draw method
 
 
