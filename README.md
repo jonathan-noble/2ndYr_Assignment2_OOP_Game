@@ -1,8 +1,9 @@
 # 2ndYr_Assignment2_OOP_Game
 
 [![Video](http://img.youtube.com/vi/wBWKu135DBI/0.jpg)](https://www.youtube.com/watch?v=wBWKu135DBI "Video")
+DISCLAIMER: KINDLY TURN DOWN YOUR VOLUME BEFORE 3:10!  Just your casual concerned citizen here.
 
-A game I made - "Grand Theft Crossy Road" - is a crossover of the two influential games I love, GTA1 + Crossy Road, is where the player IS the vehicle and tries to avoid running over pedestrians, officials (apart from zombies) and coconut trees in order to win the game!
+A game I made - "Grand Theft Crossy Road" - is a crossover of the two influential games I love, GTA1 + Crossy Road, is where the player IS the vehicle and tries to avoid running over pedestrians, gardais (apart from zombies) and coconut trees in order to win the game!
 
 1. The game is set on a platformer style/ top down perspective where the obstacles and pedestrians(footsloggers) are already set on and before the screen
 2. GTA1 Speeder, the Player is positioned from the bottom centre 
