@@ -100,8 +100,8 @@ class gameState extends HUD {
     text(high_score[0], width/2 + 50, height/2);
 
     fill(10, 220);
-    text("Try again? Press spacebar!", 175, 500);
-    if (checkKey(' ')) {
+    text("Try again? Press R.", 220, 500);
+    if (checkKey('r')) {
       setup();
       score = 0;
       landY = 100;
