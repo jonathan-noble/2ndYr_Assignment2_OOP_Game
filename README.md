@@ -1,6 +1,6 @@
 # 2ndYr_Assignment2_OOP_Game
 
-[![Video](http://img.youtube.com/vi/wBWKu135DBI/0.jpg)](https://www.youtube.com/watch?v= "Video")
+[![Video](http://img.youtube.com/vi/wBWKu135DBI/0.jpg)](https://www.youtube.com/watch?v=wBWKu135DBI "Video")
 
 A game I made - "Grand Theft Crossy Road" - is a crossover of the two influential games I love, GTA1 + Crossy Road, is where the player IS the vehicle and tries to avoid running over pedestrians, officials (apart from zombies) and coconut trees in order to win the game!
 
