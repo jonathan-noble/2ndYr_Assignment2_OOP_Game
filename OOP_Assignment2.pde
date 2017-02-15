@@ -4,7 +4,7 @@
 //  Description:  A game WHERE the PLAYER collects money and at the same time, 
 //                tries to avoid the OBSTACLES and the Footsloggers (apart from the zombies!) in order to not get busted.
 //  Features:     1) A game state with: 
-//                    a) Game Menu and Info
+//                    a) Game Menu and Instructions
 //                    b) Game Start, Game Win and Game Over - High Score is recorded!
 //                2) A HUD with: 
 //                    a) Money (reward) collected SO EACH SCORE IS RECORDED IN THE LEADERBOARD

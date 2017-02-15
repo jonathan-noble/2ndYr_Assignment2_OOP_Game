@@ -17,7 +17,8 @@ class Guards {
   }
 
   void update() {
-
+    
+    //When player hits the edge, the guards arrives
     if (pl1.playerPos.y > height - 90 ) {
       guardY += 100;
     }

@@ -1,8 +1,4 @@
 // This is the base class for text design and game background! 
-// Everything in the scene will extend GameObject
-// An abstract class means that:
-// You can't instantiate it
-// You must make a subclass and instantiate that
 // Some of the methods can be abstract. That means they have no body
 // If the subclass doesn't implement the abstract methods, then it too is abstract
 // You can use abstract classes to ensure that a class has an implementation of the abstract methods
@@ -12,7 +8,7 @@ abstract class HUD {
 
     background(#FF5AF4);  
 
-    //for loop indicates a shaded rect is incrementing to the distance of -4000 from landY
+    //for loop indicates a shaded rect is incrementing to the distance of -4370 from landY
     //y < 600 meaning keep looping until 600
     //y+= 100 meaning the distance between each rects
     for (float y = -4370; y < 600; y += 100) {

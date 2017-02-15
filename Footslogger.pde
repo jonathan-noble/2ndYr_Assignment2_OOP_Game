@@ -1,5 +1,5 @@
 //A possible class that holds inheritance over variance of pedestrians, officials 
-//and even zombies(potential scoreUp/starWantedDown)
+//and even zombies(starWantedDown)
 
 //3 stars wanted level = game over
 class Footslogger extends HUD implements Objects {

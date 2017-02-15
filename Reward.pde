@@ -14,7 +14,6 @@ class Reward {
   Reward() {
     size = 65;
     quid_pic = loadImage("quid.png");
-
   }
 
   public void getScore(float x, float y) {

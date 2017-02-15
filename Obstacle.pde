@@ -1,4 +1,4 @@
-//A possible class that holds inheritance over variance of obstacles e.g. Log of trees, train, river
+//A class that holds coconut trees to slow down the vehicle
 class Obstacle extends HUD { 
   float[] obstacleX = { 100, 200, 300, 400, 500, 600, 700, 
     600, 200, 400, 700, 100, 300, 600, 
@@ -24,8 +24,7 @@ class Obstacle extends HUD {
 
 
   Obstacle() {
-    //CREATE A FUNCTION TO CHECK AND ENSURE THAT OBSTACLE WOULD NOT SPAWN NEAR THE PLAYER
-    size = 55; // 0
+    size = 55; 
   }
 
   public void tree(float x, float y, float radius1, float radius2, int npoints) {

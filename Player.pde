@@ -1,8 +1,8 @@
 //key space is pressed to accelerate 
-//BUT every time space(gear) is pressed, gear is changed sequentially to make the player
-//accelerate in random speed and magnitude, G1-G6 then back to G1
+//BUT every time space (gear) is pressed, gear is changed sequentially to make the player
+//accelerate in order of speed and magnitude, N-G6 then back to N(Neutral)
 class Player extends HUD implements Objects {
-  PImage cars;  //PImage[] cars;
+  PImage cars;  
   PVector playerPos;
   PVector vel;
   PVector acc;
@@ -15,7 +15,6 @@ class Player extends HUD implements Objects {
   float segSize;
 
   Player() {
-    //cars = new PImage[3];
     cars = loadImage("0.png");
     playerPos = new PVector(width/2.2, height/1.3);
     vel = new PVector(0, 0);
